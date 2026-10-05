@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "Data/Repository.cs": {
-    "mtime": 1790754269.5311677,
-    "seen": 1790765646.468794,
-    "ast_hash": "a62945131331905fe98367de9d766419",
+    "mtime": 1791214402.2933967,
+    "seen": 1791214454.6588864,
+    "ast_hash": "40a1ea6f0cb22e9d3cec930b2b832b26",
     "semantic_hash": ""
   },
   "Data/SettingsStore.cs": {
@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "Models/Device.cs": {
-    "mtime": 1790754269.533864,
-    "seen": 1790765646.4687996,
-    "ast_hash": "73c87586f0a4cd0186de573073b23cc0",
+    "mtime": 1791214402.2936926,
+    "seen": 1791214454.6588926,
+    "ast_hash": "4ff649d29ad418c63cc9365b36c170e5",
     "semantic_hash": ""
   },
   "Models/HistoryEntry.cs": {
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "Services/MonitorService.cs": {
-    "mtime": 1790754269.569731,
-    "seen": 1790765646.468816,
-    "ast_hash": "c1db57af026b2e5bcf89d18c85faf389",
+    "mtime": 1791214402.2940536,
+    "seen": 1791214454.6589103,
+    "ast_hash": "c3b598cc030cf37fb82edefbdf809fcc",
     "semantic_hash": ""
   },
   "Services/NotificationService.cs": {
@@ -132,21 +132,21 @@
     "semantic_hash": ""
   },
   "Views/DeviceDetailsPage.xaml": {
-    "mtime": 1790754269.5714195,
-    "seen": 1790765646.4688191,
-    "ast_hash": "e85fd2134ceffc01b5237f691a7289fd",
+    "mtime": 1791214402.2947552,
+    "seen": 1791214454.6589136,
+    "ast_hash": "010b08a65a2dff4e0414ad1a71672214",
     "semantic_hash": ""
   },
   "Views/DeviceDetailsPage.xaml.cs": {
-    "mtime": 1790754269.57176,
-    "seen": 1790765646.4688196,
-    "ast_hash": "8d67317b38b868cbbace1d1a6230ddfd",
+    "mtime": 1791214402.2950077,
+    "seen": 1791214454.6589143,
+    "ast_hash": "2e66086ad0e4c950b76a4e22cca82786",
     "semantic_hash": ""
   },
   "Views/DevicesPage.xaml": {
-    "mtime": 1790754269.5724423,
-    "seen": 1790765646.4688208,
-    "ast_hash": "5d31a2eb22d942842e4ac8f7b39fa30c",
+    "mtime": 1791214402.2944906,
+    "seen": 1791214454.6589153,
+    "ast_hash": "88f8eb4fb602992832c0d601ae0054e8",
     "semantic_hash": ""
   },
   "Views/DevicesPage.xaml.cs": {
@@ -180,21 +180,21 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1790757673.7737916,
-    "seen": 1790765646.4688501,
-    "ast_hash": "877b25382b04ca6601516e54aa3ea794",
+    "mtime": 1791214450.851405,
+    "seen": 1791214454.658941,
+    "ast_hash": "844975a8caec5971253dd10cce2b11c6",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1790754303.8653057,
-    "seen": 1790765646.468852,
-    "ast_hash": "f43f17330226bdfe7fbf84f92b72a332",
+    "mtime": 1791214450.850768,
+    "seen": 1791214454.658943,
+    "ast_hash": "10dd64230bc47910e1b7eca288b38738",
     "semantic_hash": ""
   },
   "docs/PROGRESS.md": {
-    "mtime": 1790757906.6265414,
-    "seen": 1790765646.468853,
-    "ast_hash": "1183d1053fd3cd905b64395cc020a569",
+    "mtime": 1791214450.8526587,
+    "seen": 1791214454.6589437,
+    "ast_hash": "6c91dd1672a8c83d9eb3a2cecc5c66c9",
     "semantic_hash": ""
   },
   "Assets/SplashScreen.png": {

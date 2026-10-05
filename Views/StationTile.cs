@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using PowerHub.Models;
+using PowerHub.Protocol;
 using PowerHub.Services;
 using Windows.Foundation;
 
@@ -45,6 +46,11 @@ public sealed class StationTile : Grid
     private readonly Canvas _spark = new() { Height = SparkHeight };
     private readonly TextBlock _sparkLabel = new() { FontSize = 11, Opacity = 0.6, Text = "заряд за 24 год" };
     private readonly DispatcherQueueTimer _sparkTimer;
+    private readonly ChargeFlowBackground _flowBackground = new() { Margin = new Thickness(-16) };
+
+    /// <summary>Колір імпульсів: від мережі — бірюзовий, від сонця — бурштиновий</summary>
+    private static readonly Windows.UI.Color GridChargeColor = ColorHelper.FromArgb(0xFF, 0x2E, 0xD3, 0xB0);
+    private static readonly Windows.UI.Color SolarChargeColor = ColorHelper.FromArgb(0xFF, 0xF2, 0xA9, 0x00);
 
     private List<(DateTime Ts, int Soc)> _sparkData = new();
     private bool _loading;
@@ -67,6 +73,10 @@ public sealed class StationTile : Grid
         RowSpacing = 10;
         for (var i = 0; i < 3; i++)
             RowDefinitions.Add(new RowDefinition { Height = i == 1 ? new GridLength(1, GridUnitType.Star) : GridLength.Auto });
+
+        // Фон з анімацією струму під усім вмістом (від'ємний відступ перекриває Padding плитки)
+        SetRowSpan(_flowBackground, 3);
+        Children.Add(_flowBackground);
 
         // Рядок 0: назва, модель, онлайн
         var header = new Grid { ColumnSpacing = 8 };
@@ -163,6 +173,11 @@ public sealed class StationTile : Grid
         else
             _grid.Foreground = Ui.AlertBrush(d.GridLevel);
         _flow.Text = d.CardStatusText;
+
+        // Анімація струму, поки батарея заряджається (від мережі, сонця чи авто)
+        var charging = d.IsOnline && d.Flow is BatteryFlow.Charging;
+        var solar = (s.SolarW ?? 0) > (s.AcInW ?? 0);
+        _flowBackground.SetCharging(charging, s.InputW ?? 0, solar ? SolarChargeColor : GridChargeColor);
     }
 
     #region Міні-графік
