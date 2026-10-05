@@ -106,7 +106,8 @@
 ## 2026-10-05: реліз 0.5.0 через GitHub Actions
 - [x] `.github/workflows/release.yml`: збирання на windows-latest, тести, zip, SHA-256, GitHub Release; опис — `docs/release-notes/0.5.0.md`; версія 0.5.0
 - Перший запуск workflow упав: `.gitignore` (`[Rr]eleases/`) ігнорував `docs/releases/`, тож опис не потрапив у коміт. Описи релізів тепер у `docs/release-notes/`
-- [ ] Перевірити, що реліз v0.5.0 опубліковано і архів запускається
+- [x] Реліз [v0.5.0](https://github.com/t1me2drum/PowerHub/releases/tag/v0.5.0) опубліковано workflow-ом (запуск вручну, 2-га спроба): `PowerHub-0.5.0-win-x64.zip`, 36 МБ, 287 файлів у папці `PowerHub`, SHA-256 збігається з описом
+- [ ] Перевірити, що архів з релізу запускається на чистому ПК
 
 ## Наступний крок
 ## 2026-09-30: плитки без кнопок керування
