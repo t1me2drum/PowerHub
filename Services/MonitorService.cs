@@ -20,6 +20,11 @@ public static class MonitorService
     private static readonly TimeSpan TickInterval = TimeSpan.FromSeconds(10);
     private static readonly TimeSpan OfflineAfter = TimeSpan.FromMinutes(3);
     private static readonly TimeSpan QuotaRefreshInterval = TimeSpan.FromMinutes(5);
+
+    /// <summary>
+    /// Як часто перечитувати список станцій з акаунта (назви, нові й видалені станції)
+    /// </summary>
+    private static readonly TimeSpan StationSyncInterval = TimeSpan.FromMinutes(10);
     private static readonly TimeSpan MinBackoff = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan MaxBackoff = TimeSpan.FromMinutes(5);
 
@@ -45,6 +50,7 @@ public static class MonitorService
     private static DispatcherQueue? _dispatcher;
     private static long _lastRecordedMinute;
     private static DateTime _lastQuotaRequest = DateTime.MinValue;
+    private static DateTime _lastStationSync = DateTime.MinValue;
     private static DateTime _lastCleanup = DateTime.MinValue;
 
     /// <summary>
@@ -99,6 +105,7 @@ public static class MonitorService
 
         if (App.Repository.Credentials?.HasDeveloperKeys == true)
         {
+            _lastStationSync = DateTime.Now;
             _ = Task.Run(SyncStationsSafeAsync);
         }
     }
@@ -579,6 +586,13 @@ public static class MonitorService
         if (now - _lastQuotaRequest > QuotaRefreshInterval)
             await RequestAllQuotasAsync();
 
+        // Назви станцій беруться з акаунта: перейменування в офіційному застосунку підхоплюється тут
+        if (now - _lastStationSync > StationSyncInterval && App.Repository.Credentials?.HasDeveloperKeys == true)
+        {
+            _lastStationSync = now;
+            await SyncStationsSafeAsync();
+        }
+
         if (now - _lastCleanup > TimeSpan.FromDays(1))
         {
             _lastCleanup = now;
@@ -632,7 +646,18 @@ public static class MonitorService
         try
         {
             var r = await App.Repository.SyncStationsAsync();
-            DiagLog.Log("sync", $"stations: +{r.Added} ~{r.Updated} -{r.Removed}, unsupported {r.Unsupported.Count}");
+            if (r.Added + r.Updated + r.Removed > 0)
+                DiagLog.Log("sync", $"stations: +{r.Added} ~{r.Updated} -{r.Removed}, unsupported {r.Unsupported.Count}");
+
+            // Назви змінено без сповіщення (синхронізація йде у фоні) — оновити їх на відкритих сторінках
+            if (r.Updated > 0)
+            {
+                _dispatcher?.TryEnqueue(() =>
+                {
+                    foreach (var device in App.Repository.ActiveDevices)
+                        device.NotifyNameChanged();
+                });
+            }
         }
         catch (Exception ex)
         {

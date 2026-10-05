@@ -25,6 +25,11 @@ public class Device : ObservableObject
     /// Змінити назву без сповіщення інтерфейсу (з фонового потоку; список перебудовується за DevicesChanged)
     /// </summary>
     public void SetNameSilently(string name) => _name = name;
+
+    /// <summary>
+    /// Повідомити інтерфейс про назву, змінену через SetNameSilently (лише з UI-потоку)
+    /// </summary>
+    public void NotifyNameChanged() => OnPropertyChanged(nameof(Name));
     public DeviceModel Model { get; set; }
 
     /// <summary>
@@ -41,9 +46,14 @@ public class Device : ObservableObject
     public bool IsDeleted { get; set; }
 
     /// <summary>
-    /// Назву змінено в застосунку: синхронізація з акаунтом її не перезаписує
+    /// Назву задано в PowerHub (лише для станцій, доданих вручну; станції з акаунта беруть назву звідти)
     /// </summary>
     public bool CustomName { get; set; }
+
+    /// <summary>
+    /// Перейменовувати в PowerHub можна лише станції, яких немає в акаунті
+    /// </summary>
+    [JsonIgnore] public bool CanRename => !IsImported;
 
     #region Телеметрія (не зберігається)
 
