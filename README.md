@@ -37,7 +37,7 @@
 ## Встановлення
 
 1. Завантажте `PowerHub-<версія>-win-x64.zip` з [Releases](../../releases/latest)
-2. Розпакуйте архів у будь-яку папку й запустіть `PowerHub.exe` (встановлювати нічого не треба, потрібен лише [.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0))
+2. Розпакуйте архів у будь-яку папку й запустіть `PowerHub\PowerHub.exe` (встановлювати нічого не треба, потрібен лише [.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0))
 3. Увійдіть з email і паролем EcoFlow
 4. Щоб станції підтягнулися автоматично, введіть у налаштуваннях ключі з developer.ecoflow.com (або додайте станцію вручну за серійним номером)
 

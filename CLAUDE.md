@@ -20,6 +20,11 @@ dotnet build -c Release -p:Platform=x64
 Дані застосунку лежать у `%LocalAppData%\PowerHub\`: `settings.json` (налаштування, станції, зашифровані облікові дані), `history.db`, `diag.log` (журнал діагностики, як DiagLog в Android: з'єднання, збої розбору з hex-префіксом кадру, невдалі команди, падіння).
 Через те що пакета немає, `ApplicationData`/`Windows.Storage` не використовуємо, лише `Data/LocalStore`.
 
+### Реліз
+- `.github/workflows/release.yml` (GitHub Actions, windows-latest): тести, `dotnet build`, архів `PowerHub-<версія>-win-x64.zip` (папка `PowerHub` без `.pdb`), SHA-256 у описі, публікація на GitHub Releases
+- Запуск: пуш тега `vX.Y.Z` або вручну — Actions → Release → Run workflow (версія без «v»). Перед цим: `<Version>` у `PowerHub.csproj` = версія релізу і є опис `docs/releases/<версія>.md`, інакше workflow зупиниться
+- З хмарної сесії теги не пушаться — запускати вручну (workflow_dispatch), тег створить сам workflow
+
 ### Перевірка без Windows (Linux, хмарні сесії Claude)
 - `dotnet test tests/PowerHub.Tests` — тести протоколів, логіки стану й форматування (перенесені з Android `app/src/test`); компілюють лише `Protocol/`, `Models/DeviceModel.cs`, `Models/Format.cs`
 - `tools/check-build/check.sh` — компілює весь C# проти справжніх збірок Windows App SDK; XAML-компілятор на Linux не працює, тому `genstubs.py` генерує заглушки `x:Name`/`InitializeComponent` і перевіряє обробники подій та шляхи `x:Bind`. Успіх — `Check -> …PowerHubCheck.dll` без `error CS` (MSB4062 після нього очікувані). Саму розмітку XAML перевіряє лише збирання на Windows
