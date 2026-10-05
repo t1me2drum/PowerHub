@@ -104,7 +104,8 @@
 - [x] Злито в `main` ([t1me2drum/PowerHub#3](https://github.com/t1me2drum/PowerHub/pull/3)), перевірено на Windows: назви підтягнулися з акаунта
 
 ## 2026-10-05: реліз 0.5.0 через GitHub Actions
-- [x] `.github/workflows/release.yml`: збирання на windows-latest, тести, zip, SHA-256, GitHub Release; опис — `docs/releases/0.5.0.md`; версія 0.5.0
+- [x] `.github/workflows/release.yml`: збирання на windows-latest, тести, zip, SHA-256, GitHub Release; опис — `docs/release-notes/0.5.0.md`; версія 0.5.0
+- Перший запуск workflow упав: `.gitignore` (`[Rr]eleases/`) ігнорував `docs/releases/`, тож опис не потрапив у коміт. Описи релізів тепер у `docs/release-notes/`
 - [ ] Перевірити, що реліз v0.5.0 опубліковано і архів запускається
 
 ## Наступний крок
