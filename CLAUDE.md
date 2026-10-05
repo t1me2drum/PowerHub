@@ -22,7 +22,7 @@ dotnet build -c Release -p:Platform=x64
 
 ### Реліз
 - `.github/workflows/release.yml` (GitHub Actions, windows-latest): тести, `dotnet build`, архів `PowerHub-<версія>-win-x64.zip` (папка `PowerHub` без `.pdb`), SHA-256 у описі, публікація на GitHub Releases
-- Запуск: пуш тега `vX.Y.Z` або вручну — Actions → Release → Run workflow (версія без «v»). Перед цим: `<Version>` у `PowerHub.csproj` = версія релізу і є опис `docs/releases/<версія>.md`, інакше workflow зупиниться
+- Запуск: пуш тега `vX.Y.Z` або вручну — Actions → Release → Run workflow (версія без «v»). Перед цим: `<Version>` у `PowerHub.csproj` = версія релізу і є опис `docs/release-notes/<версія>.md`, інакше workflow зупиниться
 - З хмарної сесії теги не пушаться — запускати вручну (workflow_dispatch), тег створить сам workflow
 
 ### Перевірка без Windows (Linux, хмарні сесії Claude)
