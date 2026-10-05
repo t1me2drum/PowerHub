@@ -264,7 +264,7 @@ public class Repository
     }
 
     /// <summary>
-    /// Перейменувати станцію. Назва лишається й після синхронізації з акаунтом
+    /// Перейменувати станцію, додану вручну (якої немає в акаунті)
     /// </summary>
     public void RenameDevice(string serialNumber, string name)
     {
@@ -272,7 +272,8 @@ public class Repository
         lock (_lock)
         {
             device = _devices.FirstOrDefault(d => d.SerialNumber == serialNumber);
-            if (device == null || string.IsNullOrWhiteSpace(name))
+            // Станції з акаунта перейменовують в офіційному застосунку: синхронізація однаково поверне назву звідти
+            if (device == null || device.IsImported || string.IsNullOrWhiteSpace(name))
                 return;
             device.CustomName = true;
         }
@@ -373,13 +374,14 @@ public class Repository
                 }
                 else if (!existing.IsDeleted)
                 {
-                    // Назву, змінену в застосунку, не перезаписуємо
-                    var name = existing.CustomName ? existing.Name : cloud.Name;
-                    if (existing.Name != name || existing.Model != model || !existing.IsImported)
+                    // Назва станції з акаунта завжди така, як в офіційному застосунку
+                    var name = cloud.Name;
+                    if (existing.Name != name || existing.Model != model || !existing.IsImported || existing.CustomName)
                     {
                         renamed.Add((existing, name));
                         existing.Model = model;
                         existing.IsImported = true;
+                        existing.CustomName = false;
                         updated++;
                     }
                 }

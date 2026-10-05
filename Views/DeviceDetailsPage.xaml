@@ -53,7 +53,7 @@
                 <TextBlock x:Name="DeviceModelText" FontSize="13" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
             </StackPanel>
             <CommandBar Grid.Column="2" DefaultLabelPosition="Collapsed" Background="Transparent" VerticalAlignment="Center">
-                <AppBarButton Icon="Edit" Label="Перейменувати" ToolTipService.ToolTip="Перейменувати" Click="RenameButton_Click"/>
+                <AppBarButton x:Name="RenameButton" Icon="Edit" Label="Перейменувати" ToolTipService.ToolTip="Перейменувати" Click="RenameButton_Click"/>
                 <AppBarButton Icon="Refresh" Label="Оновити" ToolTipService.ToolTip="Запросити повний стан" Click="RefreshButton_Click"/>
                 <AppBarButton Icon="Delete" Label="Видалити" ToolTipService.ToolTip="Видалити станцію" Click="DeleteButton_Click"/>
             </CommandBar>

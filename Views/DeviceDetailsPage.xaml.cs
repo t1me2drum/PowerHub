@@ -85,6 +85,9 @@ public sealed partial class DeviceDetailsPage : Page
         ModelText.Text = _device.Model.GetDisplayName();
         SerialNumberText.Text = _device.SerialNumber;
 
+        // Станції з акаунта перейменовують в офіційному застосунку, назва звідти підтягується сама
+        RenameButton.Visibility = Ui.VisibleIf(_device.CanRename);
+
         // Телеметрія оновлюється MonitorService в UI-потоці
         _device.PropertyChanged += Device_PropertyChanged;
         UpdateOverview();
