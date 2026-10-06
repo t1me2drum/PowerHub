@@ -180,21 +180,21 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1791214450.851405,
-    "seen": 1791214454.658941,
-    "ast_hash": "844975a8caec5971253dd10cce2b11c6",
+    "mtime": 1791225594.9500792,
+    "seen": 1791226518.8118906,
+    "ast_hash": "df8e0f7defbbd621ee0d25ffdaca1907",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791214450.850768,
-    "seen": 1791214454.658943,
-    "ast_hash": "10dd64230bc47910e1b7eca288b38738",
+    "mtime": 1791225523.7056055,
+    "seen": 1791226518.8118927,
+    "ast_hash": "12a5ae004c98d428559e45b4d8ae0b16",
     "semantic_hash": ""
   },
   "docs/PROGRESS.md": {
-    "mtime": 1791214450.8526587,
-    "seen": 1791214454.6589437,
-    "ast_hash": "6c91dd1672a8c83d9eb3a2cecc5c66c9",
+    "mtime": 1791226434.2636535,
+    "seen": 1791226518.8118935,
+    "ast_hash": "05784a5dd2fafdd6540556c901617589",
     "semantic_hash": ""
   },
   "Assets/SplashScreen.png": {
@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "PowerHub.csproj": {
-    "mtime": 1790754294.2760112,
-    "seen": 1790765646.4688032,
-    "ast_hash": "1c9699e74c00d9c9daab3193537dc71e",
+    "mtime": 1791225509.094339,
+    "seen": 1791226518.8118289,
+    "ast_hash": "aa474537333576d575d69cbae6e2d304",
     "semantic_hash": ""
   },
   "PowerHub.sln": {
@@ -336,9 +336,9 @@
     "semantic_hash": ""
   },
   "Views/StationTile.cs": {
-    "mtime": 1790765606.227758,
-    "seen": 1790765646.4688272,
-    "ast_hash": "5ce50af0bf4797088c4033fd97d6aa47",
+    "mtime": 1791226465.8018594,
+    "seen": 1791226518.8118658,
+    "ast_hash": "c6f56c11dd45c7e7393c515aeec35197",
     "semantic_hash": ""
   },
   "Views/Ui.cs": {
@@ -453,6 +453,24 @@
     "mtime": 1790757246.5602026,
     "seen": 1790765646.468849,
     "ast_hash": "9378bd03d56baaf78bd738ab3848f142",
+    "semantic_hash": ""
+  },
+  "Views/ChargeFlowBackground.cs": {
+    "mtime": 1791226465.8014364,
+    "seen": 1791226518.8118525,
+    "ast_hash": "4306a9f9cc5cca412455865e51baa829",
+    "semantic_hash": ""
+  },
+  ".github/workflows/release.yml": {
+    "mtime": 1791225594.9494777,
+    "seen": 1791226518.8118894,
+    "ast_hash": "2b69d723962b5ab338ef35bbc7016325",
+    "semantic_hash": ""
+  },
+  "docs/release-notes/0.5.0.md": {
+    "mtime": 1791225509.0893755,
+    "seen": 1791226518.8118944,
+    "ast_hash": "210d8bc03e27ebb6b2d6da80a5bc38be",
     "semantic_hash": ""
   }
 }
