@@ -102,6 +102,10 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
+                                <!-- Імпульси струму на фоні, поки станція заряджається -->
+                                <views:ChargeFlowBackground Grid.ColumnSpan="3" Margin="-12,-10,-4,-10"
+                                                            Device="{x:Bind}"/>
+
                                 <views:SocRing RingSize="56" StrokeWidth="6"
                                                Soc="{x:Bind BatteryLevel, Mode=OneWay}"
                                                IsOnline="{x:Bind IsOnline, Mode=OneWay}"

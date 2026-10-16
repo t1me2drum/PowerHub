@@ -1,0 +1,51 @@
+<!--
+  MSI-інсталятор PowerHub (WiX Toolset v5). Збирається лише на Windows — tools/package.ps1 (його викликають workflow-и).
+  Встановлює в Program Files\PowerHub для всіх користувачів, додає ярлик у меню «Пуск» і запис у «Програми та компоненти».
+  Новіша версія замінює попередню (MajorUpgrade за UpgradeCode — його НЕ можна змінювати).
+  Дані користувача (%LocalAppData%\PowerHub) інсталятор не чіпає ні при оновленні, ні при видаленні.
+  Змінні: Version (x.y.z), SourceDir (папка з готовим застосунком).
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="PowerHub"
+           Manufacturer="t1me2drum"
+           Version="$(var.Version)"
+           UpgradeCode="C5DF2E7A-2393-47C1-8276-31D6A3E61896"
+           Scope="perMachine"
+           Compressed="yes">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of PowerHub is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Icon Id="AppIcon.ico" SourceFile="$(var.SourceDir)\Assets\AppIcon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/t1me2drum/PowerHub" />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="PowerHub" />
+    </StandardDirectory>
+
+    <!-- Усі файли застосунку (папка з архіву релізу) -->
+    <ComponentGroup Id="AppFiles" Directory="INSTALLFOLDER">
+      <Files Include="$(var.SourceDir)\**" />
+    </ComponentGroup>
+
+    <!-- Ярлик у меню «Пуск» -->
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Component Id="StartMenuShortcut" Guid="F624D677-93DA-4D18-BD0F-1D802CED1900">
+        <Shortcut Id="AppShortcut"
+                  Name="PowerHub"
+                  Description="EcoFlow stations monitor"
+                  Target="[INSTALLFOLDER]PowerHub.exe"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="AppIcon.ico" />
+        <RegistryValue Root="HKMU" Key="Software\PowerHub\Installer" Name="StartMenuShortcut"
+                       Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </StandardDirectory>
+
+    <Feature Id="Main">
+      <ComponentGroupRef Id="AppFiles" />
+      <ComponentRef Id="StartMenuShortcut" />
+    </Feature>
+  </Package>
+</Wix>

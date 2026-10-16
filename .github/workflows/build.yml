@@ -1,0 +1,40 @@
+# Перевірка кожного PR на Windows: тести, повне збирання (разом з XAML, якого не перевіряє tools/check-build),
+# архів і MSI. Готові файли — в артефактах запуску (Actions → запуск → Artifacts).
+name: Build
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Тести
+        run: dotnet test tests/PowerHub.Tests -c Release
+
+      - name: Збирання
+        run: dotnet build PowerHub.csproj -c Release -p:Platform=x64
+
+      - name: WiX
+        run: dotnet tool install --global wix --version 5.0.2
+
+      - name: Архів і MSI
+        shell: pwsh
+        run: |
+          $v = ([xml](Get-Content PowerHub.csproj)).Project.PropertyGroup.Version | Where-Object { $_ } | Select-Object -First 1
+          ./tools/package.ps1 -Version $v
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PowerHub-${{ github.sha }}
+          path: |
+            artifacts/*.zip
+            artifacts/*.msi
+            artifacts/SHA256.txt

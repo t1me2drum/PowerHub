@@ -1,4 +1,4 @@
-# Реліз PowerHub: збирання на Windows, тести, zip і публікація на GitHub Releases.
+# Реліз PowerHub: збирання на Windows, тести, zip і MSI (tools/package.ps1) і публікація на GitHub Releases.
 # Запуск: пуш тега vX.Y.Z або вручну (Actions → Release → Run workflow, версія без «v»).
 # Версія має збігатися з <Version> у PowerHub.csproj, опис релізу — docs/release-notes/<версія>.md
 name: Release
@@ -41,23 +41,16 @@ jobs:
       - name: Збирання
         run: dotnet build PowerHub.csproj -c Release -p:Platform=x64
 
-      - name: Архів
-        id: pack
+      - name: WiX
+        run: dotnet tool install --global wix --version 5.0.2
+
+      - name: Архів і MSI
         shell: pwsh
         run: |
           $v = '${{ steps.ver.outputs.version }}'
-          $out = 'bin/x64/Release/net8.0-windows10.0.22621.0/win-x64'
-          if (-not (Test-Path "$out/PowerHub.exe")) { throw "Немає $out/PowerHub.exe" }
-          # Усередині архіву — папка PowerHub з усім потрібним для запуску (без налагоджувальних .pdb)
-          New-Item -ItemType Directory -Path PowerHub | Out-Null
-          Copy-Item -Path "$out/*" -Destination PowerHub -Recurse
-          Get-ChildItem PowerHub -Recurse -Filter *.pdb | Remove-Item
-          $zip = "PowerHub-$v-win-x64.zip"
-          Compress-Archive -Path PowerHub -DestinationPath $zip
-          $hash = (Get-FileHash $zip -Algorithm SHA256).Hash
-          $notes = (Get-Content "docs/release-notes/$v.md" -Raw) + "`nSHA-256 ($zip): ``$hash```n"
+          $hashes = ./tools/package.ps1 -Version $v
+          $notes = (Get-Content "docs/release-notes/$v.md" -Raw) + "`nSHA-256:`n``````n" + ($hashes -join "`n") + "`n``````n"
           Set-Content -Path release-notes.md -Value $notes -Encoding utf8
-          "zip=$zip" >> $env:GITHUB_OUTPUT
 
       - uses: softprops/action-gh-release@v2
         with:
@@ -65,4 +58,6 @@ jobs:
           target_commitish: ${{ github.sha }}
           name: PowerHub ${{ steps.ver.outputs.version }}
           body_path: release-notes.md
-          files: ${{ steps.pack.outputs.zip }}
+          files: |
+            artifacts/*.zip
+            artifacts/*.msi

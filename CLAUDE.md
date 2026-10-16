@@ -21,7 +21,9 @@ dotnet build -c Release -p:Platform=x64
 Через те що пакета немає, `ApplicationData`/`Windows.Storage` не використовуємо, лише `Data/LocalStore`.
 
 ### Реліз
-- `.github/workflows/release.yml` (GitHub Actions, windows-latest): тести, `dotnet build`, архів `PowerHub-<версія>-win-x64.zip` (папка `PowerHub` без `.pdb`), SHA-256 у описі, публікація на GitHub Releases
+- `.github/workflows/release.yml` (GitHub Actions, windows-latest): тести, `dotnet build`, `tools/package.ps1` → архів `PowerHub-<версія>-win-x64.zip` (папка `PowerHub` без `.pdb`) і MSI `PowerHub-<версія>-win-x64.msi`, SHA-256 у описі, публікація на GitHub Releases
+- MSI: `installer/PowerHub.wxs` (WiX v5, `dotnet tool install --global wix --version 5.0.2`, лише Windows). Program Files\PowerHub для всіх користувачів, ярлик у «Пуск», MajorUpgrade за `UpgradeCode` (не змінювати!); дані в %LocalAppData%\PowerHub не чіпає. Потрібен .NET 8 Desktop Runtime
+- `.github/workflows/build.yml`: на кожен PR — тести, повне збирання на Windows (разом з XAML), архів і MSI в артефактах запуску. Перед злиттям PR дочекатися зеленої перевірки
 - Запуск: пуш тега `vX.Y.Z` або вручну — Actions → Release → Run workflow (версія без «v»). Перед цим: `<Version>` у `PowerHub.csproj` = версія релізу і є опис `docs/release-notes/<версія>.md`, інакше workflow зупиниться
 - З хмарної сесії теги не пушаться — запускати вручну (workflow_dispatch), тег створить сам workflow
 

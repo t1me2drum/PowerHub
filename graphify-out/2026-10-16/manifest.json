@@ -1,0 +1,476 @@
+{
+  "Api/EcoflowCloud.cs": {
+    "mtime": 1790754269.5266604,
+    "seen": 1790765646.4687843,
+    "ast_hash": "11595b7557e4a4e65a8d154f314190b8",
+    "semantic_hash": ""
+  },
+  "Api/EcoflowOpenApi.cs": {
+    "mtime": 1790754269.5271885,
+    "seen": 1790765646.468786,
+    "ast_hash": "7734e8b0f76f8de478b2eda0424643ad",
+    "semantic_hash": ""
+  },
+  "Api/MqttLink.cs": {
+    "mtime": 1790754269.527717,
+    "seen": 1790765646.468787,
+    "ast_hash": "a49b690a341917cbd20e88c08ef235bd",
+    "semantic_hash": ""
+  },
+  "App.xaml": {
+    "mtime": 1790754269.5280983,
+    "seen": 1790765646.4687881,
+    "ast_hash": "d4e52b6584905f840f62ae124e8db7a9",
+    "semantic_hash": ""
+  },
+  "App.xaml.cs": {
+    "mtime": 1790754269.528697,
+    "seen": 1790765646.468789,
+    "ast_hash": "ac1233847fcba098447f792d7e4a81c8",
+    "semantic_hash": ""
+  },
+  "Data/CredentialStore.cs": {
+    "mtime": 1790754269.5295734,
+    "seen": 1790765646.4687898,
+    "ast_hash": "5c6255c37544971c8101d23fabb835a0",
+    "semantic_hash": ""
+  },
+  "Data/DeviceStore.cs": {
+    "mtime": 1790754269.5300457,
+    "seen": 1790765646.4687908,
+    "ast_hash": "02110aa1aa6ffabfe1971b81ade43050",
+    "semantic_hash": ""
+  },
+  "Data/HistoryDbContext.cs": {
+    "mtime": 1790754269.5303774,
+    "seen": 1790765646.4687917,
+    "ast_hash": "74db3a623566b10af78d7aa499f642ac",
+    "semantic_hash": ""
+  },
+  "Data/Repository.cs": {
+    "mtime": 1791214402.2933967,
+    "seen": 1791214454.6588864,
+    "ast_hash": "40a1ea6f0cb22e9d3cec930b2b832b26",
+    "semantic_hash": ""
+  },
+  "Data/SettingsStore.cs": {
+    "mtime": 1790754269.531825,
+    "seen": 1790765646.4687948,
+    "ast_hash": "b4a66c6106a2a0262f65935cc9af670d",
+    "semantic_hash": ""
+  },
+  "MainWindow.xaml": {
+    "mtime": 1790754269.5321398,
+    "seen": 1790765646.468796,
+    "ast_hash": "ec622cab3202156fec4ddd033b712686",
+    "semantic_hash": ""
+  },
+  "MainWindow.xaml.cs": {
+    "mtime": 1790754269.532534,
+    "seen": 1790765646.4687967,
+    "ast_hash": "78dd847bc52be520f2da69e22cf1f49e",
+    "semantic_hash": ""
+  },
+  "Models/AppSettings.cs": {
+    "mtime": 1790754269.5328772,
+    "seen": 1790765646.4687977,
+    "ast_hash": "33e3c929773ad5b1de6261236b4bc4a5",
+    "semantic_hash": ""
+  },
+  "Models/Credentials.cs": {
+    "mtime": 1790754269.533391,
+    "seen": 1790765646.4687984,
+    "ast_hash": "b969bc2109044ca353007964445cf551",
+    "semantic_hash": ""
+  },
+  "Models/Device.cs": {
+    "mtime": 1791214402.2936926,
+    "seen": 1791214454.6588926,
+    "ast_hash": "4ff649d29ad418c63cc9365b36c170e5",
+    "semantic_hash": ""
+  },
+  "Models/HistoryEntry.cs": {
+    "mtime": 1790754269.535137,
+    "seen": 1790765646.468802,
+    "ast_hash": "2dea22717a01f01f0abda1d0f6a30229",
+    "semantic_hash": ""
+  },
+  "Protocol/Delta2Protocol.cs": {
+    "mtime": 1790754269.5364656,
+    "seen": 1790765646.4688048,
+    "ast_hash": "35f37787a08f67d9212f39c07e202e8e",
+    "semantic_hash": ""
+  },
+  "Protocol/DeviceProtocol.cs": {
+    "mtime": 1790754269.5376837,
+    "seen": 1790765646.4688077,
+    "ast_hash": "84c3b53f953408d92bbd0682c299a21d",
+    "semantic_hash": ""
+  },
+  "Protocol/JsonMessages.cs": {
+    "mtime": 1790754269.5384114,
+    "seen": 1790765646.4688094,
+    "ast_hash": "b41dbfc7a75ec55b43378da0f168e38e",
+    "semantic_hash": ""
+  },
+  "Protocol/ProtocolHelpers.cs": {
+    "mtime": 1790754269.567512,
+    "seen": 1790765646.4688122,
+    "ast_hash": "25c83929254844acffc82b802f0bc01d",
+    "semantic_hash": ""
+  },
+  "Services/MonitorService.cs": {
+    "mtime": 1791214402.2940536,
+    "seen": 1791214454.6589103,
+    "ast_hash": "c3b598cc030cf37fb82edefbdf809fcc",
+    "semantic_hash": ""
+  },
+  "Services/NotificationService.cs": {
+    "mtime": 1790754269.5704877,
+    "seen": 1790765646.4688172,
+    "ast_hash": "72c78e797b5f6d7b9b106fb36e6d3a9b",
+    "semantic_hash": ""
+  },
+  "Views/DeviceDetailsPage.xaml": {
+    "mtime": 1791214402.2947552,
+    "seen": 1791214454.6589136,
+    "ast_hash": "010b08a65a2dff4e0414ad1a71672214",
+    "semantic_hash": ""
+  },
+  "Views/DeviceDetailsPage.xaml.cs": {
+    "mtime": 1791214402.2950077,
+    "seen": 1791214454.6589143,
+    "ast_hash": "2e66086ad0e4c950b76a4e22cca82786",
+    "semantic_hash": ""
+  },
+  "Views/DevicesPage.xaml": {
+    "mtime": 1791214402.2944906,
+    "seen": 1791214454.6589153,
+    "ast_hash": "88f8eb4fb602992832c0d601ae0054e8",
+    "semantic_hash": ""
+  },
+  "Views/DevicesPage.xaml.cs": {
+    "mtime": 1790754269.573047,
+    "seen": 1790765646.4688215,
+    "ast_hash": "05a609bf471ebcb8c4035afabab800c7",
+    "semantic_hash": ""
+  },
+  "Views/LoginPage.xaml": {
+    "mtime": 1790754269.5739145,
+    "seen": 1790765646.468823,
+    "ast_hash": "044e65f25f2bcf62ca880e8c374c80dc",
+    "semantic_hash": ""
+  },
+  "Views/LoginPage.xaml.cs": {
+    "mtime": 1790754269.5743065,
+    "seen": 1790765646.468824,
+    "ast_hash": "316f6abe6b59b3129ddccf62dc73fdf1",
+    "semantic_hash": ""
+  },
+  "Views/SettingsPage.xaml": {
+    "mtime": 1790754269.5747588,
+    "seen": 1790765646.4688249,
+    "ast_hash": "4d4b853c8f59b2b5b6c0ef546e5b5732",
+    "semantic_hash": ""
+  },
+  "Views/SettingsPage.xaml.cs": {
+    "mtime": 1790754269.5751379,
+    "seen": 1790765646.4688256,
+    "ast_hash": "b410796a6dba9866918f4654fec4ad6c",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1791225594.9500792,
+    "seen": 1791226518.8118906,
+    "ast_hash": "df8e0f7defbbd621ee0d25ffdaca1907",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1791225523.7056055,
+    "seen": 1791226518.8118927,
+    "ast_hash": "12a5ae004c98d428559e45b4d8ae0b16",
+    "semantic_hash": ""
+  },
+  "docs/PROGRESS.md": {
+    "mtime": 1791226434.2636535,
+    "seen": 1791226518.8118935,
+    "ast_hash": "05784a5dd2fafdd6540556c901617589",
+    "semantic_hash": ""
+  },
+  "Assets/SplashScreen.png": {
+    "mtime": 1790712288.3390932,
+    "seen": 1790765646.468854,
+    "ast_hash": "1c7a5984ecd02805aeac9c7016cb0a5e",
+    "semantic_hash": "1c7a5984ecd02805aeac9c7016cb0a5e"
+  },
+  "Assets/Square150x150Logo.png": {
+    "mtime": 1790712288.3390932,
+    "seen": 1790765646.4688551,
+    "ast_hash": "553c5d432d3f3ad1dea0ab2632ac8c48",
+    "semantic_hash": "553c5d432d3f3ad1dea0ab2632ac8c48"
+  },
+  "Assets/Square44x44Logo.png": {
+    "mtime": 1790712288.3390932,
+    "seen": 1790765646.4688559,
+    "ast_hash": "68670ab811c651be2a705ce8fcd11b66",
+    "semantic_hash": "68670ab811c651be2a705ce8fcd11b66"
+  },
+  "Assets/StoreLogo.png": {
+    "mtime": 1790712288.3390932,
+    "seen": 1790765646.4688568,
+    "ast_hash": "31139ca2ddb0241a5f29df5e931352af",
+    "semantic_hash": "31139ca2ddb0241a5f29df5e931352af"
+  },
+  "Assets/Wide310x150Logo.png": {
+    "mtime": 1790712288.3390932,
+    "seen": 1790765646.4688578,
+    "ast_hash": "62fedc838cdefdb9d7d6ea53188a9c87",
+    "semantic_hash": "62fedc838cdefdb9d7d6ea53188a9c87"
+  },
+  "Data/LocalStore.cs": {
+    "mtime": 1790754288.3972785,
+    "seen": 1790765646.4687932,
+    "ast_hash": "45517cf9b3e463824dfd258c4444793c",
+    "semantic_hash": ""
+  },
+  "Protocol/Delta3Protocol.cs": {
+    "mtime": 1790754269.5368752,
+    "seen": 1790765646.4688056,
+    "ast_hash": "61823292091806e8a6cea1be4d6a010f",
+    "semantic_hash": ""
+  },
+  "Protocol/DeltaPro3Protocol.cs": {
+    "mtime": 1790754269.5373259,
+    "seen": 1790765646.468807,
+    "ast_hash": "0d79a62f907a030fa3cd9c3fbfe579d9",
+    "semantic_hash": ""
+  },
+  "Protocol/LegacyJsonProtocols.cs": {
+    "mtime": 1790754269.5391767,
+    "seen": 1790765646.4688106,
+    "ast_hash": "f42755d48e9acdea72008b4cdf05fbbb",
+    "semantic_hash": ""
+  },
+  "Protocol/ProtoCodec.cs": {
+    "mtime": 1790754269.5667706,
+    "seen": 1790765646.4688115,
+    "ast_hash": "deee99888820c4bb2a298b0b678a58b2",
+    "semantic_hash": ""
+  },
+  "Protocol/Protocols.cs": {
+    "mtime": 1790754269.5678666,
+    "seen": 1790765646.468813,
+    "ast_hash": "d164cd9db8f9ffdd348ecdae0ad0d66d",
+    "semantic_hash": ""
+  },
+  "Protocol/Proto/README.md": {
+    "mtime": 1790754269.564362,
+    "seen": 1790765646.4688509,
+    "ast_hash": "afd9aacecc68d4eac2726ae2e0d04b1e",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1790757673.7245593,
+    "seen": 1790765646.468783,
+    "ast_hash": "f602d0e5d467d7a3552c2939f3ac8511",
+    "semantic_hash": ""
+  },
+  "Models/DeviceModel.cs": {
+    "mtime": 1790754269.5342503,
+    "seen": 1790765646.4688003,
+    "ast_hash": "3e6826a7c73e02cb287a6d9c0ea91707",
+    "semantic_hash": ""
+  },
+  "Models/Format.cs": {
+    "mtime": 1790754269.5347433,
+    "seen": 1790765646.4688013,
+    "ast_hash": "b00fb768971b4eb32e28cbe0b7e3d1a0",
+    "semantic_hash": ""
+  },
+  "PowerHub.csproj": {
+    "mtime": 1791225509.094339,
+    "seen": 1791226518.8118289,
+    "ast_hash": "aa474537333576d575d69cbae6e2d304",
+    "semantic_hash": ""
+  },
+  "PowerHub.sln": {
+    "mtime": 1790754269.536138,
+    "seen": 1790765646.468804,
+    "ast_hash": "ed01d2906f7a954212549d760ac07758",
+    "semantic_hash": ""
+  },
+  "Protocol/DeviceStateLogic.cs": {
+    "mtime": 1790754269.5380158,
+    "seen": 1790765646.4688087,
+    "ast_hash": "4b929598c9651073118937613d965c14",
+    "semantic_hash": ""
+  },
+  "Services/Autostart.cs": {
+    "mtime": 1790754288.3977027,
+    "seen": 1790765646.4688144,
+    "ast_hash": "53eb9d883fd4efa31cb052e89d098a07",
+    "semantic_hash": ""
+  },
+  "Services/DiagLog.cs": {
+    "mtime": 1790754269.5691953,
+    "seen": 1790765646.468815,
+    "ast_hash": "49d23e5ddd7a0284ff91101240ad45aa",
+    "semantic_hash": ""
+  },
+  "Services/TrayIcon.cs": {
+    "mtime": 1790754269.5709763,
+    "seen": 1790765646.4688182,
+    "ast_hash": "3732be1a1bbc8ed7d5d313b9c76474d9",
+    "semantic_hash": ""
+  },
+  "Views/HistoryPanel.cs": {
+    "mtime": 1790754269.5735414,
+    "seen": 1790765646.4688222,
+    "ast_hash": "e522a37bcf429dfd0b7e5c2e2e0a26ca",
+    "semantic_hash": ""
+  },
+  "Views/SocRing.cs": {
+    "mtime": 1790754269.5756228,
+    "seen": 1790765646.4688263,
+    "ast_hash": "c50d60b3fb3e0830248920558370fd51",
+    "semantic_hash": ""
+  },
+  "Views/StationTile.cs": {
+    "mtime": 1791226465.8018594,
+    "seen": 1791226518.8118658,
+    "ast_hash": "c6f56c11dd45c7e7393c515aeec35197",
+    "semantic_hash": ""
+  },
+  "Views/Ui.cs": {
+    "mtime": 1790754269.5766003,
+    "seen": 1790765646.4688282,
+    "ast_hash": "28d61f6f7de0803b4b880a4056f2ebcb",
+    "semantic_hash": ""
+  },
+  "tests/PowerHub.Tests/DeviceStateTests.cs": {
+    "mtime": 1790754269.5774841,
+    "seen": 1790765646.4688342,
+    "ast_hash": "16c0f05923d216b5ece678bcdc2e4004",
+    "semantic_hash": ""
+  },
+  "tests/PowerHub.Tests/FormatTests.cs": {
+    "mtime": 1790754269.5778327,
+    "seen": 1790765646.4688349,
+    "ast_hash": "a4a85a579fb882d952292f787898bc81",
+    "semantic_hash": ""
+  },
+  "tests/PowerHub.Tests/JsonProtocolTests.cs": {
+    "mtime": 1790754269.5782433,
+    "seen": 1790765646.4688358,
+    "ast_hash": "480a42b9b7e5bb4624636e7a1054e486",
+    "semantic_hash": ""
+  },
+  "tests/PowerHub.Tests/PowerHub.Tests.csproj": {
+    "mtime": 1790754269.5786238,
+    "seen": 1790765646.4688368,
+    "ast_hash": "07c83a52b43681df2edd73fd1d6333e2",
+    "semantic_hash": ""
+  },
+  "tests/PowerHub.Tests/ProtobufProtocolTests.cs": {
+    "mtime": 1790754269.5790312,
+    "seen": 1790765646.4688377,
+    "ast_hash": "f3ee56f04cb6dbcb9a6a853a3fe4b486",
+    "semantic_hash": ""
+  },
+  "tools/check-build/Check.csproj": {
+    "mtime": 1790754269.5794525,
+    "seen": 1790765646.4688387,
+    "ast_hash": "077bb7a3fae4f101de3e8d91d2777efc",
+    "semantic_hash": ""
+  },
+  "tools/check-build/check.sh": {
+    "mtime": 1790754269.5798616,
+    "seen": 1790765646.4688394,
+    "ast_hash": "285c85dcb4629a8a5cdf354cdbbe1168",
+    "semantic_hash": ""
+  },
+  "tools/check-build/genstubs.py": {
+    "mtime": 1790750546.1332383,
+    "seen": 1790765646.4688404,
+    "ast_hash": "e34ca402fa89598a6f244adb23c4a440",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/session-start.sh": {
+    "mtime": 1790757246.5705984,
+    "seen": 1790765646.4687788,
+    "ast_hash": "4095b4b46981dc1706fe680deeb8fc28",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/SKILL.md": {
+    "mtime": 1790757246.5604422,
+    "seen": 1790765646.4688418,
+    "ast_hash": "a93e8ad64464faa2abc9a0d42aeb0cab",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/add-watch.md": {
+    "mtime": 1790757246.5603993,
+    "seen": 1790765646.4688427,
+    "ast_hash": "c1f65eb4102ad515149303c7f296b718",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/exports.md": {
+    "mtime": 1790757246.5600188,
+    "seen": 1790765646.4688437,
+    "ast_hash": "9da2a2152e60a22f07f05fed5158f287",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/extraction-spec.md": {
+    "mtime": 1790757246.560119,
+    "seen": 1790765646.4688447,
+    "ast_hash": "42fef56a01698118f7fd722acdadea34",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/github-and-merge.md": {
+    "mtime": 1790757246.560248,
+    "seen": 1790765646.4688456,
+    "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/hooks.md": {
+    "mtime": 1790757246.5600746,
+    "seen": 1790765646.4688463,
+    "ast_hash": "3f545db6ce646650bb9de588f5512a27",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/query.md": {
+    "mtime": 1790757246.5602818,
+    "seen": 1790765646.468847,
+    "ast_hash": "3c46f8ad006874260614ed8657d02307",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/transcribe.md": {
+    "mtime": 1790757246.5601633,
+    "seen": 1790765646.4688482,
+    "ast_hash": "67b6a5fa6c0974e18f60db9f8932fbd8",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/update.md": {
+    "mtime": 1790757246.5602026,
+    "seen": 1790765646.468849,
+    "ast_hash": "9378bd03d56baaf78bd738ab3848f142",
+    "semantic_hash": ""
+  },
+  "Views/ChargeFlowBackground.cs": {
+    "mtime": 1791226465.8014364,
+    "seen": 1791226518.8118525,
+    "ast_hash": "4306a9f9cc5cca412455865e51baa829",
+    "semantic_hash": ""
+  },
+  ".github/workflows/release.yml": {
+    "mtime": 1791225594.9494777,
+    "seen": 1791226518.8118894,
+    "ast_hash": "2b69d723962b5ab338ef35bbc7016325",
+    "semantic_hash": ""
+  },
+  "docs/release-notes/0.5.0.md": {
+    "mtime": 1791225509.0893755,
+    "seen": 1791226518.8118944,
+    "ast_hash": "210d8bc03e27ebb6b2d6da80a5bc38be",
+    "semantic_hash": ""
+  }
+}

@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "Views/DevicesPage.xaml": {
-    "mtime": 1791214402.2944906,
-    "seen": 1791214454.6589153,
-    "ast_hash": "88f8eb4fb602992832c0d601ae0054e8",
+    "mtime": 1792155510.6348543,
+    "seen": 1792155601.753726,
+    "ast_hash": "6c9a8d7b037719e97d2461d911c21c95",
     "semantic_hash": ""
   },
   "Views/DevicesPage.xaml.cs": {
@@ -180,9 +180,9 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1791225594.9500792,
-    "seen": 1791226518.8118906,
-    "ast_hash": "df8e0f7defbbd621ee0d25ffdaca1907",
+    "mtime": 1792155598.46047,
+    "seen": 1792155601.7537565,
+    "ast_hash": "540e138d22605eebc4e92720c494b636",
     "semantic_hash": ""
   },
   "README.md": {
@@ -192,9 +192,9 @@
     "semantic_hash": ""
   },
   "docs/PROGRESS.md": {
-    "mtime": 1791226434.2636535,
-    "seen": 1791226518.8118935,
-    "ast_hash": "05784a5dd2fafdd6540556c901617589",
+    "mtime": 1792155598.4645028,
+    "seen": 1792155601.7537591,
+    "ast_hash": "331115e88485238b7dafcc65d8ce320c",
     "semantic_hash": ""
   },
   "Assets/SplashScreen.png": {
@@ -336,9 +336,9 @@
     "semantic_hash": ""
   },
   "Views/StationTile.cs": {
-    "mtime": 1791226465.8018594,
-    "seen": 1791226518.8118658,
-    "ast_hash": "c6f56c11dd45c7e7393c515aeec35197",
+    "mtime": 1792155510.6340582,
+    "seen": 1792155601.7537334,
+    "ast_hash": "1c57c5deb443b4a872ba15c50000acab",
     "semantic_hash": ""
   },
   "Views/Ui.cs": {
@@ -456,21 +456,33 @@
     "semantic_hash": ""
   },
   "Views/ChargeFlowBackground.cs": {
-    "mtime": 1791226465.8014364,
-    "seen": 1791226518.8118525,
-    "ast_hash": "4306a9f9cc5cca412455865e51baa829",
+    "mtime": 1792155510.6334498,
+    "seen": 1792155601.7537227,
+    "ast_hash": "0b6d467477ede1067689285481b3b606",
     "semantic_hash": ""
   },
   ".github/workflows/release.yml": {
-    "mtime": 1791225594.9494777,
-    "seen": 1791226518.8118894,
-    "ast_hash": "2b69d723962b5ab338ef35bbc7016325",
+    "mtime": 1792155579.6117086,
+    "seen": 1792155601.7537553,
+    "ast_hash": "bae69bb205f04c1197a39e4dbe80b791",
     "semantic_hash": ""
   },
   "docs/release-notes/0.5.0.md": {
     "mtime": 1791225509.0893755,
     "seen": 1791226518.8118944,
     "ast_hash": "210d8bc03e27ebb6b2d6da80a5bc38be",
+    "semantic_hash": ""
+  },
+  "tools/package.ps1": {
+    "mtime": 1792155598.4476933,
+    "seen": 1792155601.753744,
+    "ast_hash": "8eac50e7984bc12f7e4956fd37b34e1f",
+    "semantic_hash": ""
+  },
+  ".github/workflows/build.yml": {
+    "mtime": 1792155579.5986362,
+    "seen": 1792155601.7537544,
+    "ast_hash": "de8ef2b6e4d429c626f0948a62738a5a",
     "semantic_hash": ""
   }
 }
