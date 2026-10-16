@@ -118,6 +118,7 @@
 - [x] `ChargeFlowBackground` отримав властивість `Device` (сам стежить за станцією) і `Update(Device)`; логіку «заряджається / колір» перенесено з `StationTile`. Фон доданий і в компактну картку списку; відступи імпульсів від країв пропорційні висоті
 - [x] MSI: `installer/PowerHub.wxs` (WiX v5), пакування — `tools/package.ps1` (zip + MSI + SHA256.txt у `artifacts/`); реліз тепер додає й MSI
 - [x] `.github/workflows/build.yml`: перевірка PR на Windows з артефактами
+- [x] Версія 0.6.0, опис `docs/release-notes/0.6.0.md`
 - [ ] Перевірити MSI на ПК: встановлення, ярлик, автозапуск, оновлення поверх і видалення
 
 ## Наступний крок
