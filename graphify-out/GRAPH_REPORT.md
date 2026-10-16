@@ -1,17 +1,17 @@
-# Graph Report - Omniroute  (2026-10-05)
+# Graph Report - Omniroute  (2026-10-16)
 
 ## Corpus Check
-- 73 files · ~41,974 words
+- 74 files · ~42,740 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 10 file(s) not represented in the graph (top: (none) 4, .proto 2, .ico 1)
+- Unclassified: 11 file(s) not represented in the graph (top: (none) 4, .proto 2, .ico 1)
 
 ## Summary
-- 1137 nodes · 2149 edges · 60 communities (38 shown, 22 thin omitted)
+- 1143 nodes · 2164 edges · 65 communities (41 shown, 24 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 92 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c4f18457`
+- Built from commit: `ed4e6a72`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,14 +25,14 @@
 - SocRing
 - EcoflowCloud
 - Device
-- .SendAsync
+- MonitorService
 - TrayIcon
 - Protobuf schemas ef_delta3.proto and ef_dp3.proto
-- .Log
-- Delta2Family
+- App
+- IControl
 - AppSettings
 - MqttLink
-- ControlSection
+- OutgoingMessage
 - DeviceDetailsPage
 - Page
 - LocalStore
@@ -45,12 +45,12 @@
 - PowerHub
 - SliderControl
 - graphify reference: extra exports and benchmark
-- MainWindow
-- ProtobufProtocolTests
+- Window
+- NotificationService
 - Check.csproj
 - genstubs.py
-- Format
-- DeltaPro3Protocol
+- .Log
+- ControlSection
 - PowerHub.Tests.csproj
 - graphify reference: query, path, explain
 - graphify reference: add a URL and watch a folder
@@ -67,14 +67,18 @@
 - StationTile
 - ChargeFlowBackground
 - ToggleControl
-- RoutedEventArgs
-- OutgoingMessage
+- .RequestQuotaAsync
+- .SliderRow
 - 0.5.0.md
+- OnlineIndicator
 - .Tabs_SelectionChanged
-- MonitorService
+- CommandErrorBar
+- ControlsPanel
+- History
+- Ring
 
 ## God Nodes (most connected - your core abstractions)
-1. `Device` - 67 edges
+1. `Device` - 70 edges
 2. `DeviceState` - 43 edges
 3. `DeviceParams` - 39 edges
 4. `MonitorService` - 38 edges
@@ -94,8 +98,8 @@
   App.xaml.cs → App.xaml
 - `App` --references--> `Repository`  [EXTRACTED]
   App.xaml.cs → Data/Repository.cs
-- `App` --references--> `MainWindow`  [EXTRACTED]
-  App.xaml.cs → MainWindow.xaml.cs
+- `App` --references--> `TrayIcon`  [EXTRACTED]
+  App.xaml.cs → Services/TrayIcon.cs
 
 ## Import Cycles
 - None detected.
@@ -106,30 +110,30 @@
 - **Protobuf protocol stack for Delta 3 / Delta Pro 3** — protocol_proto_readme_protobuf_schemas, protocol_proto_readme_pregenerated_csharp, docs_progress_protocodec, readme_supported_models [INFERRED 0.85]
 - **UWP/MSIX App Visual Asset Set (lightning bolt branding)** — assets_splashscreen_splashscreen, assets_square150x150logo_square150x150logo, assets_square44x44logo_square44x44logo, assets_storelogo_storelogo, assets_wide310x150logo_wide310x150logo [INFERRED 0.85]
 
-## Communities (60 total, 22 thin omitted)
+## Communities (65 total, 24 thin omitted)
 
 ### Community 0 - "system"
 Cohesion: 0.06
 Nodes (8): PowerHub.Protocol, PowerHub.Services, PowerHub.Data, PowerHub.Api, PowerHub.Models, PowerHub.Tests, PowerHub.Views, PowerHub
 
 ### Community 1 - "Page"
-Cohesion: 0.09
-Nodes (33): AcInText, AcOutText, CommandErrorBar, ControlsPanel, CyclesText, DcOutText, DeviceModelText, DeviceNameText (+25 more)
+Cohesion: 0.16
+Nodes (22): AcInText, AcOutText, CyclesText, DcOutText, DeviceModelText, DeviceNameText, FlowText, GridStateText (+14 more)
 
 ### Community 2 - "DeviceState"
-Cohesion: 0.06
-Nodes (30): DeviceState, AcInVolt, AcInW, AcOutW, BatteryTempC, ChargeRemainMin, Cycles, DcOutW (+22 more)
+Cohesion: 0.05
+Nodes (30): Format, DeviceState, AcInVolt, AcInW, AcOutW, BatteryTempC, ChargeRemainMin, Cycles (+22 more)
 
 ### Community 3 - "HistoryEntry"
 Cohesion: 0.07
 Nodes (14): HistoryEntry, AcInWatts, BatteryLevel, BatteryWatts, HasAcInput, Id, InputWatts, OutputWatts (+6 more)
 
 ### Community 4 - "DeviceParams"
-Cohesion: 0.05
-Nodes (12): Delta3Protocol, DeviceParams, IDeviceProtocol, TopicKind, Data, GetReply, SetReply, JsonMessages (+4 more)
+Cohesion: 0.06
+Nodes (11): DeviceParams, TopicKind, Data, GetReply, SetReply, JsonMessages, Frame, ProtoCodec (+3 more)
 
 ### Community 5 - "DevicesPage"
-Cohesion: 0.07
+Cohesion: 0.06
 Nodes (18): ConnectionBar, DevicesList, EmptyPanel, Page, StatusText, SyncButton, SyncProgress, TilesGrid (+10 more)
 
 ### Community 6 - "SocRing"
@@ -144,6 +148,10 @@ Nodes (19): EcoflowCloud, EcoflowException, IsAuthError, MqttCredentials, Sessio
 Cohesion: 0.05
 Nodes (35): Device, BatteryLevel, BatteryPercent, BatteryText, CanRename, CardGridAlertText, CardPowerText, CardStatusText (+27 more)
 
+### Community 9 - "MonitorService"
+Cohesion: 0.12
+Nodes (5): MonitorService, IsRunning, State, Status, Snapshot
+
 ### Community 10 - "TrayIcon"
 Cohesion: 0.15
 Nodes (4): NOTIFYICONDATA, POINT, TrayIcon, WNDCLASSEX
@@ -152,25 +160,25 @@ Nodes (4): NOTIFYICONDATA, POINT, TrayIcon, WNDCLASSEX
 Cohesion: 0.08
 Nodes (23): Android PowerHub app (Ecoflow-mon-android, reference implementation), graphify knowledge graph workflow (graphify-out, query before reading), %LocalAppData%\PowerHub data folder (settings.json, history.db, diag.log), EcoFlow MQTT topics (/app/device/property/{sn}, thing/property/get|set, get_reply|set_reply), Omniroute (legacy project name before 0.4.0), PowerHub (WinUI 3 EcoFlow client), Delta 3 offline diagnosis issue, DiagLog diag.log (256 KB, connection, parse failures with hex prefix) (+15 more)
 
-### Community 12 - ".Log"
-Cohesion: 0.12
-Nodes (6): Application, App, IsExiting, MainWindow, Repository, Autostart
+### Community 12 - "App"
+Cohesion: 0.11
+Nodes (6): Application, App, IsExiting, MainWindow, Repository, MainWindow
 
-### Community 13 - "Delta2Family"
-Cohesion: 0.16
-Nodes (10): Delta2Family, SolarKeys, Delta2MaxProtocol, SolarKeys, Delta2Protocol, SolarKeys, DeltaMaxProtocol, SolarKeys (+2 more)
+### Community 13 - "IControl"
+Cohesion: 0.14
+Nodes (14): Delta2Family, SolarKeys, Delta2MaxProtocol, SolarKeys, Delta2Protocol, SolarKeys, IControl, Id (+6 more)
 
 ### Community 14 - "AppSettings"
 Cohesion: 0.08
 Nodes (27): AppSettings, AccessKey, CloseToTray, Layout, LowBatteryThreshold, NotificationsEnabled, NotifyOnFullCharge, NotifyOnLowBattery (+19 more)
 
-### Community 16 - "ControlSection"
-Cohesion: 0.20
-Nodes (7): ControlSection, Backup, Charging, Outputs, System, ControlOptions, Controls
+### Community 16 - "OutgoingMessage"
+Cohesion: 0.15
+Nodes (5): Delta3Protocol, OutgoingMessage, Payload, ControlOptions, Controls
 
 ### Community 18 - "Page"
 Cohesion: 0.05
-Nodes (40): Grid, DiagLog, AccessKeyBox, AutostartToggle, ClearKeysButton, CloseToTrayToggle, ConnectionBar, DiagText (+32 more)
+Nodes (39): DiagLog, AccessKeyBox, AutostartToggle, ClearKeysButton, CloseToTrayToggle, ConnectionBar, DiagText, EmailText (+31 more)
 
 ### Community 19 - "LocalStore"
 Cohesion: 0.15
@@ -181,8 +189,8 @@ Cohesion: 0.16
 Nodes (11): DeviceModel, Delta2, Delta2Max, Delta3, Delta3Max, Delta3Plus, DeltaMax, DeltaPro3 (+3 more)
 
 ### Community 21 - "ChoiceControl"
-Cohesion: 0.15
-Nodes (12): ChoiceControl, Command, Id, Label, Optimistic, Options, Read, Section (+4 more)
+Cohesion: 0.14
+Nodes (9): ChoiceControl, Command, Id, Label, Optimistic, Options, Read, Section (+1 more)
 
 ### Community 22 - "What You Must Do When Invoked"
 Cohesion: 0.08
@@ -208,13 +216,17 @@ Nodes (11): SliderControl, Command, Id, Label, Max, Min, Optimistic, Read (+3 mo
 Cohesion: 0.22
 Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
 
-### Community 29 - "MainWindow"
-Cohesion: 0.18
-Nodes (4): RootFrame, Window, MainWindow, Frame
+### Community 29 - "Window"
+Cohesion: 0.50
+Nodes (3): RootFrame, Window, Frame
 
 ### Community 31 - "Check.csproj"
 Cohesion: 0.20
 Nodes (9): net8.0-windows10.0.22621.0, CommunityToolkit.Mvvm (8.3.2), Google.Protobuf (3.28.3), Microsoft.EntityFrameworkCore.Sqlite (8.0.10), Microsoft.Windows.SDK.BuildTools (10.0.22621.3233), Microsoft.WindowsAppSDK (1.5.240802000), MQTTnet (4.3.7.1207), System.Security.Cryptography.ProtectedData (8.0.0) (+1 more)
+
+### Community 34 - "ControlSection"
+Cohesion: 0.27
+Nodes (6): DeltaPro3Protocol, ControlSection, Backup, Charging, Outputs, System
 
 ### Community 35 - "PowerHub.Tests.csproj"
 Cohesion: 0.29
@@ -252,33 +264,37 @@ Nodes (4): Background mode: tray icon, close-to-tray, autostart, Battery state b
 Cohesion: 0.25
 Nodes (7): ToggleControl, Command, Id, Label, Optimistic, Read, Section
 
+### Community 54 - ".RequestQuotaAsync"
+Cohesion: 0.20
+Nodes (3): Protocols, RenameButton, AppBarButton
+
 ### Community 56 - "0.5.0.md"
 Cohesion: 0.40
 Nodes (4): Встановлення, Відомі обмеження, Підтримувані моделі, Що нового після 0.1.0
 
-### Community 60 - "MonitorService"
-Cohesion: 0.13
-Nodes (4): MonitorService, IsRunning, State, Status
+### Community 57 - "OnlineIndicator"
+Cohesion: 0.67
+Nodes (3): OnlineIndicator, WeakGridCard, Border
 
 ## Knowledge Gaps
-- **282 isolated node(s):** `session-start.sh script`, `IsAuthError`, `IsConnected`, `MainWindow`, `Repository` (+277 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 463 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **22 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **283 isolated node(s):** `session-start.sh script`, `IsAuthError`, `IsConnected`, `MainWindow`, `Repository` (+278 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 466 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **24 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Device` connect `Device` to `system`, `DeviceState`, `DevicesPage`, `.SendAsync`, `DeviceDetailsPage`, `LocalStore`, `DeviceModel`, `StationTile`, `Repository`?**
-  _High betweenness centrality (0.197) - this node is a cross-community bridge._
-- **Why does `Repository` connect `Repository` to `system`, `Device`, `.Log`, `.SaveSettings`, `AppSettings`, `LocalStore`, `DeviceModel`, `Credentials`, `HistoryDbContext`?**
-  _High betweenness centrality (0.104) - this node is a cross-community bridge._
-- **Why does `DeviceDetailsPage` connect `DeviceDetailsPage` to `system`, `Page`, `Format`, `DeviceParams`, `EcoflowCloud`, `Device`, `RoutedEventArgs`, `.Tabs_SelectionChanged`?**
-  _High betweenness centrality (0.090) - this node is a cross-community bridge._
+- **Why does `Device` connect `Device` to `system`, `DeviceState`, `DevicesPage`, `MonitorService`, `DeviceDetailsPage`, `LocalStore`, `DeviceModel`, `ChargeFlowBackground`, `.RequestQuotaAsync`, `.SliderRow`, `Repository`, `StationTile`, `NotificationService`?**
+  _High betweenness centrality (0.212) - this node is a cross-community bridge._
+- **Why does `Repository` connect `Repository` to `system`, `Device`, `App`, `.SaveSettings`, `AppSettings`, `LocalStore`, `DeviceModel`, `Credentials`, `HistoryDbContext`?**
+  _High betweenness centrality (0.106) - this node is a cross-community bridge._
+- **Why does `DeviceDetailsPage` connect `DeviceDetailsPage` to `system`, `Page`, `DeviceParams`, `EcoflowCloud`, `Device`, `.RequestQuotaAsync`, `.SliderRow`, `.Tabs_SelectionChanged`?**
+  _High betweenness centrality (0.103) - this node is a cross-community bridge._
 - **Are the 14 inferred relationships involving `DeviceState` (e.g. with `.Charging_UsesOnlyChargeEstimate()` and `.Discharging_UsesOnlyDischargeEstimate()`) actually correct?**
   _`DeviceState` has 14 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 6 inferred relationships involving `DeviceParams` (e.g. with `.Delta2AcToggle_BuildsDocumentedCommand()` and `.Delta2WithoutGridVoltage_HasNoGrid()`) actually correct?**
   _`DeviceParams` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `session-start.sh script`, `IsAuthError`, `IsConnected` to the rest of the system?**
-  _282 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _283 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `system` be split into smaller, more focused modules?**
-  _Cohesion score 0.06099656357388316 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06164089347079038 - nodes in this community are weakly interconnected._

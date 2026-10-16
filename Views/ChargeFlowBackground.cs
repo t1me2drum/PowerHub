@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Shapes;
+using PowerHub.Models;
+using PowerHub.Protocol;
 using Windows.Foundation;
 using Windows.UI;
 
@@ -26,6 +29,23 @@ public sealed class ChargeFlowBackground : Canvas
     private static readonly double[] PassSeconds = { 3.6, 2.4, 1.5 };
 
     private static readonly bool AnimationsEnabled = ReadAnimationsEnabled();
+
+    /// <summary>Колір імпульсів: від мережі — бірюзовий, від сонця — бурштиновий</summary>
+    private static readonly Color GridChargeColor = ColorHelper.FromArgb(0xFF, 0x2E, 0xD3, 0xB0);
+    private static readonly Color SolarChargeColor = ColorHelper.FromArgb(0xFF, 0xF2, 0xA9, 0x00);
+
+    public static readonly DependencyProperty DeviceProperty = DependencyProperty.Register(
+        nameof(Device), typeof(Device), typeof(ChargeFlowBackground), new PropertyMetadata(null, (d, e) =>
+            ((ChargeFlowBackground)d).OnDeviceChanged(e.OldValue as Device, e.NewValue as Device)));
+
+    /// <summary>
+    /// Станція, за якою фон сам стежить (для x:Bind у шаблонах); замість цього можна викликати Update
+    /// </summary>
+    public Device? Device
+    {
+        get => (Device?)GetValue(DeviceProperty);
+        set => SetValue(DeviceProperty, value);
+    }
 
     private readonly List<(Rectangle Streak, TranslateTransform Move, GradientStop Glow)> _streaks = new();
     private readonly RectangleGeometry _clip = new();
@@ -69,12 +89,57 @@ public sealed class ChargeFlowBackground : Canvas
             if (_active)
                 Restart();
         };
-        Unloaded += (_, _) => Stop();
+        Unloaded += (_, _) =>
+        {
+            Stop();
+            if (Device != null)
+                Device.PropertyChanged -= Device_PropertyChanged;
+        };
         Loaded += (_, _) =>
         {
+            // Елемент у шаблоні списку може вивантажуватись і завантажуватись знову
+            if (Device != null)
+            {
+                Device.PropertyChanged -= Device_PropertyChanged;
+                Device.PropertyChanged += Device_PropertyChanged;
+                Update(Device);
+            }
             if (_active)
                 Restart();
         };
+    }
+
+    private void OnDeviceChanged(Device? oldDevice, Device? newDevice)
+    {
+        if (oldDevice != null)
+            oldDevice.PropertyChanged -= Device_PropertyChanged;
+        if (newDevice != null)
+        {
+            newDevice.PropertyChanged += Device_PropertyChanged;
+            Update(newDevice);
+        }
+        else
+        {
+            SetCharging(false, 0, GridChargeColor);
+        }
+    }
+
+    private void Device_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (sender is Device device)
+            Update(device);
+    }
+
+    /// <summary>
+    /// Увімкнути анімацію, поки станція онлайн і батарея заряджається (від мережі, сонця чи авто).
+    /// Колір — за джерелом, швидкість — за вхідною потужністю
+    /// </summary>
+    public void Update(Device device)
+    {
+        var s = device.State;
+        var charging = device.IsOnline && device.Flow is BatteryFlow.Charging;
+        var solar = (s.SolarW ?? 0) > (s.AcInW ?? 0);
+        SetCharging(charging, s.InputW ?? 0, solar ? SolarChargeColor : GridChargeColor);
     }
 
     /// <summary>
@@ -121,8 +186,9 @@ public sealed class ChargeFlowBackground : Canvas
             var (streak, move, glow) = _streaks[i];
 
             // Імпульси рівномірно розкладено по висоті з невеликим розкидом; верх і низ лишаються вільними
-            var band = (height - 40) / _streaks.Count;
-            SetTop(streak, 20 + band * i + _random.NextDouble() * Math.Max(band - StreakThickness, 0));
+            var edge = Math.Min(20, height * 0.15);
+            var band = (height - 2 * edge) / _streaks.Count;
+            SetTop(streak, edge + band * i + _random.NextDouble() * Math.Max(band - StreakThickness, 0));
             SetLeft(streak, 0);
             glow.Color = Color.FromArgb((byte)(_random.Next(70, 140)), _color.R, _color.G, _color.B);
 

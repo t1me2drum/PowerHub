@@ -93,3 +93,6 @@ dist/
 
 ## Перевірка збирання без Windows: згенеровані заглушки
 tools/check-build/Stubs/
+
+## Результати tools/package.ps1 (архів, MSI)
+artifacts/

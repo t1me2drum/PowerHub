@@ -48,10 +48,6 @@ public sealed class StationTile : Grid
     private readonly DispatcherQueueTimer _sparkTimer;
     private readonly ChargeFlowBackground _flowBackground = new() { Margin = new Thickness(-16) };
 
-    /// <summary>Колір імпульсів: від мережі — бірюзовий, від сонця — бурштиновий</summary>
-    private static readonly Windows.UI.Color GridChargeColor = ColorHelper.FromArgb(0xFF, 0x2E, 0xD3, 0xB0);
-    private static readonly Windows.UI.Color SolarChargeColor = ColorHelper.FromArgb(0xFF, 0xF2, 0xA9, 0x00);
-
     private List<(DateTime Ts, int Soc)> _sparkData = new();
     private bool _loading;
 
@@ -174,10 +170,8 @@ public sealed class StationTile : Grid
             _grid.Foreground = Ui.AlertBrush(d.GridLevel);
         _flow.Text = d.CardStatusText;
 
-        // Анімація струму, поки батарея заряджається (від мережі, сонця чи авто)
-        var charging = d.IsOnline && d.Flow is BatteryFlow.Charging;
-        var solar = (s.SolarW ?? 0) > (s.AcInW ?? 0);
-        _flowBackground.SetCharging(charging, s.InputW ?? 0, solar ? SolarChargeColor : GridChargeColor);
+        // Анімація струму, поки батарея заряджається
+        _flowBackground.Update(d);
     }
 
     #region Міні-графік
