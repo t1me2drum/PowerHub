@@ -85,7 +85,7 @@ public sealed class Delta3Protocol : IDeviceProtocol
             DischargeRemainMin = DeviceParamsExtensions.ValidMinutes(p.GetInt("cms_dsg_rem_time") ?? p.GetInt("bms_dsg_rem_time")),
             BatteryTempC = p.GetInt("bms_max_cell_temp"),
             AcInVolt = acInVolt,
-            GridConnected = p.GetFlag("plug_in_info_ac_in_flag") ?? (acInVolt.HasValue ? acInVolt > 100 : null),
+            GridConnected = p.ProtoGridConnected(acInVolt, p.GetInt("pow_get_ac_in")),
             Cycles = p.GetInt("cycles"),
             Soh = p.GetInt("bms_batt_soh")
         };
