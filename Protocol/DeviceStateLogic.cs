@@ -44,14 +44,22 @@ public static class DeviceStateLogic
     private const int FlowDeadbandW = 10;
 
     /// <summary>
+    /// Вхід AC, більший за цей, означає, що станція справді бере енергію з мережі
+    /// </summary>
+    private const int AcInFlowW = 20;
+
+    /// <summary>
     /// Мережа є, але нижче weakBelowVolt: за такої напруги станція зазвичай не приймає AC,
-    /// тож показувати її як таку, що заряджається, не можна
+    /// тож показувати її як таку, що заряджається, не можна. Якщо ж енергія з AC надходить
+    /// (деякі станції заряджаються й за 170–180 В), мережу вважаємо нормальною
     /// </summary>
     public static GridStatus? GetGridStatus(this DeviceState s, int weakBelowVolt) => s.GridConnected switch
     {
         null => null,
         false => GridStatus.None,
-        true => s.AcInVolt is int v && v >= 1 && v < weakBelowVolt ? GridStatus.Weak : GridStatus.Ok
+        true => s.AcInVolt is int v && v >= 1 && v < weakBelowVolt && (s.AcInW ?? 0) <= AcInFlowW
+            ? GridStatus.Weak
+            : GridStatus.Ok
     };
 
     /// <summary>
