@@ -99,6 +99,19 @@ public class ProtobufProtocolTests
     }
 
     [Fact]
+    public void DeltaPro3_ChargingFromAcWithZeroFlag_HasGrid()
+    {
+        // Станція заряджається від розетки, але надсилає plug_in_info_ac_in_flag = 0
+        var pdata = new DP3DisplayPropertyUpload
+        {
+            PowInSumW = 1550f, PowGetAcIn = 1550f, PlugInInfoAcInFlag = 0
+        }.ToByteArray();
+        var s = DeltaPro3Protocol.Instance.GetState(DeltaPro3Protocol.Instance.Parse(TopicKind.Data, Frame(254, 21, pdata)));
+        Assert.True(s.GridConnected);
+        Assert.Equal(GridStatus.Ok, s.GetGridStatus(180));
+    }
+
+    [Fact]
     public void VarintEncoding()
     {
         Assert.Equal(new byte[] { 0x00 }, ProtoCodec.EncodeVarint(0));

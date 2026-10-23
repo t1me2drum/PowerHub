@@ -76,6 +76,18 @@ public static class DeviceParamsExtensions
     /// <summary>
     /// Валідувати хвилини: 5939 і більше означає «немає оцінки», справжні оцінки менші
     /// </summary>
+    /// <summary>
+    /// Мережа для protobuf-станцій (Delta 3, Delta Pro 3). Прапорець plug_in_info_ac_in_flag буває 0,
+    /// хоча станція заряджається від розетки (бачили на Delta Pro 3), тож фізичні ознаки мають перевагу:
+    /// напруга на вході AC або потужність, що надходить з AC, означають, що мережа є
+    /// </summary>
+    public static bool? ProtoGridConnected(this DeviceParams parameters, int? acInVolt, int? acInW)
+    {
+        if (acInVolt > 100 || acInW > 20)
+            return true;
+        return parameters.GetFlag("plug_in_info_ac_in_flag") ?? (acInVolt.HasValue ? false : null);
+    }
+
     public static int? ValidMinutes(int? minutes)
     {
         return minutes is >= 1 and < 5939 ? minutes : null;
