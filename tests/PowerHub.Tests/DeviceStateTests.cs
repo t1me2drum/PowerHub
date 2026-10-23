@@ -68,6 +68,15 @@ public class DeviceStateTests
     }
 
     [Fact]
+    public void LowVoltageWithAcInput_IsOk()
+    {
+        // Delta Max заряджалась 456 Вт за 176 В при порозі 180 В
+        var s = new DeviceState { Soc = 93, GridConnected = true, AcInVolt = 176, AcInW = 456, InputW = 454, OutputW = 94 };
+        Assert.Equal(GridStatus.Ok, s.GetGridStatus(180));
+        Assert.True(s.IsChargingFromGrid(180));
+    }
+
+    [Fact]
     public void NormalGridAtOrAboveThreshold()
     {
         Assert.Equal(GridStatus.Ok, new DeviceState { GridConnected = true, AcInVolt = 180 }.GetGridStatus(180));
