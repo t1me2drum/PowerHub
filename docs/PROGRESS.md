@@ -139,7 +139,7 @@
 - [ ] Перевірити на Delta Max
 
 ## 2026-10-25: власне споживання інвертора
-- [x] Як в Android 0.10.2: рядок «Власне споживання (інвертор)» у «Споживачах» на сторінці станції. `DeviceState.BatteryW` (Delta 2 / Delta 2 Max — `bms_bmsStatus.outputWatts`, Delta Max / River 2 Max — `bmsMaster.outputWatts`, Delta Pro 3 — `pow_get_bms`; Delta 3 — немає, як в Android), розрахунок `SelfConsumptionW`: з батареї (або загальний вихід) мінус AC + DC + USB, лише коли вхід ≤ 10 Вт, інакше рядок прихований
+- [x] Як в Android 0.10.2: рядок «Власне споживання (інвертор)» у «Споживачах» на сторінці станції. `DeviceState.BatteryW` (Delta 2 / Delta 2 Max — `bms_bmsStatus.outputWatts`, Delta Max / River 2 Max — `bmsMaster.outputWatts`, Delta Pro 3 — `pow_get_bms`; Delta 3 — теж `pow_get_bms` (в Android немає; без нього від батареї бралася сума виходів і виходило завжди ≈ 0 Вт)), розрахунок `SelfConsumptionW`: з батареї (або загальний вихід) мінус AC + DC + USB, лише коли вхід ≤ 10 Вт, інакше рядок прихований
 - [ ] Перевірити на станції, що працює від батареї
 
 ## Наступний крок

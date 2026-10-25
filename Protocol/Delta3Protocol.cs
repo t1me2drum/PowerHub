@@ -86,6 +86,7 @@ public sealed class Delta3Protocol : IDeviceProtocol
             BatteryTempC = p.GetInt("bms_max_cell_temp"),
             AcInVolt = acInVolt,
             GridConnected = p.ProtoGridConnected(acInVolt, p.GetInt("pow_get_ac_in")),
+            BatteryW = p.GetAbsInt("pow_get_bms"),
             Cycles = p.GetInt("cycles"),
             Soh = p.GetInt("bms_batt_soh")
         };
