@@ -112,6 +112,19 @@ public class ProtobufProtocolTests
     }
 
     [Fact]
+    public void Delta3_SelfConsumption_FromBmsPower()
+    {
+        // Від батареї 64 Вт, на AC-виходи 48 Вт: інвертор бере ≈ 16 Вт (потужності виходу protobuf надсилає зі знаком «−»)
+        var pdata = new Delta3DisplayPropertyUpload
+        {
+            PowInSumW = 0f, PowOutSumW = 48f, PowGetAcOut = -48f, PowGetBms = -64f
+        }.ToByteArray();
+        var s = Delta3Protocol.Standard.GetState(Delta3Protocol.Standard.Parse(TopicKind.Data, Frame(254, 21, pdata)));
+        Assert.Equal(64, s.BatteryW);
+        Assert.Equal(16, s.SelfConsumptionW());
+    }
+
+    [Fact]
     public void VarintEncoding()
     {
         Assert.Equal(new byte[] { 0x00 }, ProtoCodec.EncodeVarint(0));
