@@ -38,6 +38,7 @@ public sealed class DeltaMaxProtocol : Delta2Family
             GridConnected = acInVolt == null && acIn == null
                 ? null
                 : (acInVolt ?? 0) > 100 || (acIn ?? 0) > 0,
+            BatteryW = p.GetAbsInt("bmsMaster.outputWatts"),
             Cycles = p.GetInt("bmsMaster.cycles"),
             Soh = p.GetInt("bmsMaster.soh")
         };

@@ -1,3 +1,5 @@
+using System;
+
 namespace PowerHub.Protocol;
 
 /// <summary>
@@ -70,6 +72,22 @@ public static class DeviceStateLogic
         s.GetGridStatus(weakBelowVolt) == GridStatus.Ok &&
         (s.AcInW ?? 0) > 5 &&
         s.GetBatteryFlow() is not BatteryFlow.Discharging;
+
+    /// <summary>
+    /// Що станція витрачає сама на себе (інвертор на холостому ходу, електроніка): потужність з батареї
+    /// мінус те, що віддають виходи. Лише поки станція працює тільки від батареї: з будь-яким входом
+    /// домішуються втрати зарядного пристрою і різниця нічого не означає. null, якщо визначити не можна
+    /// </summary>
+    public static int? SelfConsumptionW(this DeviceState s)
+    {
+        if (s.InputW is not int input || input > FlowDeadbandW)
+            return null;
+        if (s.AcOutW == null && s.DcOutW == null && s.UsbOutW == null)
+            return null;
+        if ((s.BatteryW ?? s.OutputW) is not int source)
+            return null;
+        return Math.Max(0, source - ((s.AcOutW ?? 0) + (s.DcOutW ?? 0) + (s.UsbOutW ?? 0)));
+    }
 
     /// <summary>
     /// Станції продовжують надсилати останню оцінку заряду/розряду навіть після зміни напрямку

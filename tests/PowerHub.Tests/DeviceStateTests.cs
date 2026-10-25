@@ -59,6 +59,27 @@ public class DeviceStateTests
         Assert.Equal(new BatteryFlow.Unknown(), new DeviceState { Soc = 50 }.GetBatteryFlow());
     }
 
+    // ---- власне споживання ----
+
+    [Fact]
+    public void SelfConsumption_OnBatteryOnly()
+    {
+        // AC увімкнено, нічого не під'єднано: батарея все одно живить інвертор на холостому ходу
+        var idle = new DeviceState { InputW = 0, OutputW = 16, AcOutW = 0, DcOutW = 0, UsbOutW = 0, BatteryW = 18 };
+        Assert.Equal(18, idle.SelfConsumptionW());
+        // Без показника батареї джерелом є загальний вихід
+        Assert.Equal(16, (idle with { BatteryW = null }).SelfConsumptionW());
+        Assert.Equal(30, new DeviceState { InputW = 0, AcOutW = 200, UsbOutW = 10, BatteryW = 240 }.SelfConsumptionW());
+    }
+
+    [Fact]
+    public void SelfConsumption_UnknownWhileAnythingFlowsIn()
+    {
+        Assert.Null(new DeviceState { InputW = 300, AcOutW = 0, BatteryW = 280 }.SelfConsumptionW());
+        Assert.Null(new DeviceState { InputW = 0, BatteryW = 20 }.SelfConsumptionW());
+        Assert.Equal(0, new DeviceState { InputW = 0, AcOutW = 100, BatteryW = 90 }.SelfConsumptionW());
+    }
+
     // ---- стан мережі ----
 
     [Fact]

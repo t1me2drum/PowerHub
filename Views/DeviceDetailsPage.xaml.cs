@@ -159,6 +159,9 @@ public sealed partial class DeviceDetailsPage : Page
         AcOutText.Text = Format.Watts(s.AcOutW);
         DcOutText.Text = Format.Watts(s.DcOutW);
         UsbOutText.Text = Format.Watts(s.UsbOutW);
+        var selfUse = online ? s.SelfConsumptionW() : null;
+        SelfUseRow.Visibility = Ui.VisibleIf(selfUse.HasValue);
+        SelfUseText.Text = selfUse.HasValue ? $"≈ {Format.Watts(selfUse)}" : string.Empty;
 
         TemperatureText.Text = s.BatteryTempC.HasValue ? $"{s.BatteryTempC} °C" : "—";
         SohText.Text = s.Soh.HasValue ? $"{s.Soh}%" : "—";
