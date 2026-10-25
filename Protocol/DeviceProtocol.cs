@@ -36,6 +36,7 @@ public record DeviceState
     public int? SolarW { get; init; }               // Сонячні панелі
     public int? DcOutW { get; init; }               // DC вихід
     public int? UsbOutW { get; init; }              // USB вихід
+    public int? BatteryW { get; init; }             // Потужність на клемах батареї, без знака
     public int? ChargeRemainMin { get; init; }      // Час до повного заряду
     public int? DischargeRemainMin { get; init; }   // Час до розряду
     public int? BatteryTempC { get; init; }         // Температура батареї
