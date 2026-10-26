@@ -161,6 +161,10 @@ public sealed partial class DeviceDetailsPage : Page
         UsbOutText.Text = Format.Watts(s.UsbOutW);
         var selfUse = online ? s.SelfConsumptionW() : null;
         SelfUseRow.Visibility = Ui.VisibleIf(selfUse.HasValue);
+        BatteryOutRow.Visibility = Ui.VisibleIf(selfUse.HasValue);
+        // Якщо станція не надсилає потужність батареї, розрахунок іде від загального виходу
+        BatteryOutLabel.Text = s.BatteryW.HasValue ? "З батареї" : "З батареї (за загальним виходом)";
+        BatteryOutText.Text = Format.Watts(s.BatteryW ?? s.OutputW);
         SelfUseText.Text = selfUse.HasValue ? $"≈ {Format.Watts(selfUse)}" : string.Empty;
 
         TemperatureText.Text = s.BatteryTempC.HasValue ? $"{s.BatteryTempC} °C" : "—";
