@@ -44,7 +44,7 @@ public abstract class Delta2Family : IDeviceProtocol
             GridConnected = acInVolt == null && acIn == null
                 ? null
                 : (acInVolt ?? 0) > 100 || (acIn ?? 0) > 0,
-            BatteryW = p.GetAbsInt("bms_bmsStatus.outputWatts"),
+            BatteryW = p.BatteryPowerW("bms_bmsStatus.outputWatts", "bms_bmsStatus"),
             Cycles = p.GetInt("bms_bmsStatus.cycles"),
             Soh = p.GetInt("bms_bmsStatus.soh")
         };

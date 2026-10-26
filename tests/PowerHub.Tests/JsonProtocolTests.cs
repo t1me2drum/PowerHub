@@ -116,4 +116,26 @@ public class JsonProtocolTests
         Assert.Equal(55, s.Soc);
         Assert.Equal(12, s.Cycles);
     }
+    [Fact]
+    public void DeltaMax_BatteryPowerFromVoltageAndCurrent()
+    {
+        // Delta Max надсилає bmsMaster.outputWatts = 0 навіть під навантаженням: беремо 50 В × 5,6 А
+        var s = DeltaMaxProtocol.Instance.GetState(new DeviceParams
+        {
+            ["pd.wattsInSum"] = 0, ["pd.wattsOutSum"] = 259, ["inv.outputWatts"] = 263, ["mppt.outWatts"] = 20,
+            ["bmsMaster.outputWatts"] = 0, ["bmsMaster.vol"] = 50000, ["bmsMaster.amp"] = -5600
+        });
+        Assert.Equal(280, s.BatteryW);
+        Assert.Equal(0, s.SelfConsumptionW());   // 280 − 263 − 20 < 0
+    }
+
+    [Fact]
+    public void Delta2_BatteryPowerPrefersReportedWatts()
+    {
+        var p = new DeviceParams { ["bms_bmsStatus.outputWatts"] = 120, ["bms_bmsStatus.vol"] = 50000, ["bms_bmsStatus.amp"] = -3000 };
+        Assert.Equal(120, Delta2Protocol.Instance.GetState(p).BatteryW);
+        p["bms_bmsStatus.outputWatts"] = 0;
+        Assert.Equal(150, Delta2Protocol.Instance.GetState(p).BatteryW);
+        Assert.Null(Delta2Protocol.Instance.GetState(new DeviceParams()).BatteryW);
+    }
 }

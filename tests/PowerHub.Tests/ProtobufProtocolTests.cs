@@ -125,6 +125,18 @@ public class ProtobufProtocolTests
     }
 
     [Fact]
+    public void Delta3_TinyAcVoltageIsIgnored()
+    {
+        // Delta 3 заряджалась 246 Вт, а plug_in_info_ac_in_vol = 1
+        var pdata = new Delta3RuntimePropertyUpload { PlugInInfoAcInVol = 1f }.ToByteArray();
+        var p = Delta3Protocol.Standard.Parse(TopicKind.Data, Frame(254, 22, pdata));
+        p["pow_get_ac_in"] = 246.0;
+        var s = Delta3Protocol.Standard.GetState(p);
+        Assert.Null(s.AcInVolt);
+        Assert.Equal(GridStatus.Ok, s.GetGridStatus(180));
+    }
+
+    [Fact]
     public void VarintEncoding()
     {
         Assert.Equal(new byte[] { 0x00 }, ProtoCodec.EncodeVarint(0));
