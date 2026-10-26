@@ -80,6 +80,17 @@ public class DeviceStateTests
         Assert.Equal(0, new DeviceState { InputW = 0, AcOutW = 100, BatteryW = 90 }.SelfConsumptionW());
     }
 
+    [Fact]
+    public void ChargeLoss_InputMinusBatteryMinusOutputs()
+    {
+        // Delta 3: з мережі 525 Вт, у батарею 464 Вт, на AC 30 Вт → втрати 31 Вт
+        var s = new DeviceState { Soc = 91, InputW = 525, OutputW = 30, AcOutW = 30, DcOutW = 0, UsbOutW = 0, BatteryW = 464 };
+        Assert.Equal(31, s.ChargeLossW());
+        Assert.Null(s.SelfConsumptionW());
+        Assert.Null((s with { BatteryW = null }).ChargeLossW());
+        Assert.Null(new DeviceState { InputW = 0, OutputW = 50, AcOutW = 50, BatteryW = 60 }.ChargeLossW());
+    }
+
     // ---- стан мережі ----
 
     [Fact]

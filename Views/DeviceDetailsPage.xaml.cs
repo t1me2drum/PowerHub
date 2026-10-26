@@ -160,7 +160,10 @@ public sealed partial class DeviceDetailsPage : Page
         DcOutText.Text = Format.Watts(s.DcOutW);
         UsbOutText.Text = Format.Watts(s.UsbOutW);
         var selfUse = online ? s.SelfConsumptionW() : null;
-        SelfUseRow.Visibility = Ui.VisibleIf(selfUse.HasValue);
+        // Під час заряду той самий рядок показує втрати: вхід − у батарею − виходи
+        var chargeLoss = online && selfUse == null ? s.ChargeLossW() : null;
+        SelfUseRow.Visibility = Ui.VisibleIf(selfUse.HasValue || chargeLoss.HasValue);
+        SelfUseLabel.Text = chargeLoss.HasValue ? "Втрати на заряджання" : "Власне споживання (інвертор)";
         // Потужність батареї видно завжди, коли вона відома; напрямок — за потоком енергії.
         // Якщо станція її не надсилає, власне споживання рахується від загального виходу — тоді показуємо його
         var batteryW = s.BatteryW ?? (selfUse.HasValue ? s.OutputW : null);
@@ -168,7 +171,8 @@ public sealed partial class DeviceDetailsPage : Page
         BatteryOutLabel.Text = d.Flow is BatteryFlow.Charging ? "У батарею"
             : s.BatteryW.HasValue ? "З батареї" : "З батареї (за загальним виходом)";
         BatteryOutText.Text = Format.Watts(batteryW);
-        SelfUseText.Text = selfUse.HasValue ? $"≈ {Format.Watts(selfUse)}" : string.Empty;
+        var derived = selfUse ?? chargeLoss;
+        SelfUseText.Text = derived.HasValue ? $"≈ {Format.Watts(derived)}" : string.Empty;
 
         TemperatureText.Text = s.BatteryTempC.HasValue ? $"{s.BatteryTempC} °C" : "—";
         SohText.Text = s.Soh.HasValue ? $"{s.Soh}%" : "—";

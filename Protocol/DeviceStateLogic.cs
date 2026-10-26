@@ -90,6 +90,17 @@ public static class DeviceStateLogic
     }
 
     /// <summary>
+    /// Втрати під час заряджання (зарядний пристрій, інвертор, електроніка): вхід мінус те, що пішло
+    /// в батарею, і мінус виходи. Лише коли батарея заряджається і станція надсилає її потужність
+    /// </summary>
+    public static int? ChargeLossW(this DeviceState s)
+    {
+        if (s.GetBatteryFlow() is not BatteryFlow.Charging || s.InputW is not int input || s.BatteryW is not int battery)
+            return null;
+        return Math.Max(0, input - battery - ((s.AcOutW ?? 0) + (s.DcOutW ?? 0) + (s.UsbOutW ?? 0)));
+    }
+
+    /// <summary>
     /// Станції продовжують надсилати останню оцінку заряду/розряду навіть після зміни напрямку
     /// (напр. Delta Pro 3 показує час до повного після зникнення мережі), тому напрямок визначаємо
     /// за входом і виходом і беремо лише відповідну оцінку

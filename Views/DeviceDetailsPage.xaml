@@ -107,8 +107,8 @@
                                 <Grid><TextBlock Text="AC виходи" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="AcOutText" Style="{StaticResource StatValueStyle}"/></Grid>
                                 <Grid><TextBlock Text="DC 12V" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="DcOutText" Style="{StaticResource StatValueStyle}"/></Grid>
                                 <Grid><TextBlock Text="USB / Type-C" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="UsbOutText" Style="{StaticResource StatValueStyle}"/></Grid>
-                                <!-- Розрахункове, станція його не надсилає: видно лише поки станція працює від батареї -->
-                                <Grid x:Name="SelfUseRow" Visibility="Collapsed"><TextBlock Text="Власне споживання (інвертор)" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="SelfUseText" Style="{StaticResource StatValueStyle}"/></Grid>
+                                <!-- Розрахункове, станція його не надсилає: від батареї — власне споживання, під час заряду — втрати -->
+                                <Grid x:Name="SelfUseRow" Visibility="Collapsed"><TextBlock x:Name="SelfUseLabel" Text="Власне споживання (інвертор)" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="SelfUseText" Style="{StaticResource StatValueStyle}"/></Grid>
                             </StackPanel>
                         </Border>
 
