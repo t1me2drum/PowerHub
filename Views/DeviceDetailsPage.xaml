@@ -102,6 +102,8 @@
                                 <Grid><TextBlock Text="Стан мережі" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="GridStateText" Style="{StaticResource StatValueStyle}"/></Grid>
                                 <Rectangle Height="1" Fill="{ThemeResource CardStrokeColorDefaultBrush}" Margin="0,4"/>
                                 <TextBlock Text="Споживачі" Style="{StaticResource CardTitleStyle}"/>
+                                <!-- Скільки віддає батарея: з нього віднімаються виходи, решта — власне споживання -->
+                                <Grid x:Name="BatteryOutRow" Visibility="Collapsed"><TextBlock x:Name="BatteryOutLabel" Text="З батареї" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="BatteryOutText" Style="{StaticResource StatValueStyle}"/></Grid>
                                 <Grid><TextBlock Text="AC виходи" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="AcOutText" Style="{StaticResource StatValueStyle}"/></Grid>
                                 <Grid><TextBlock Text="DC 12V" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="DcOutText" Style="{StaticResource StatValueStyle}"/></Grid>
                                 <Grid><TextBlock Text="USB / Type-C" Style="{StaticResource StatLabelStyle}"/><TextBlock x:Name="UsbOutText" Style="{StaticResource StatValueStyle}"/></Grid>
