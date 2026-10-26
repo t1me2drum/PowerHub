@@ -57,7 +57,8 @@ public sealed class DeltaPro3Protocol : IDeviceProtocol
 
     public DeviceState GetState(DeviceParams p)
     {
-        var acInVolt = p.GetInt("plug_in_info_ac_in_vol");
+        // Без мережі станція надсилає дрібні значення (бачили 1 В на Delta 3): напругою їх не вважаємо
+        var acInVolt = p.GetInt("plug_in_info_ac_in_vol") is int v && v >= 50 ? v : (int?)null;
         return new DeviceState
         {
             Soc = p.GetInt("cms_batt_soc") ?? p.GetInt("bms_batt_soc"),

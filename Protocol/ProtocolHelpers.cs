@@ -77,6 +77,25 @@ public static class DeviceParamsExtensions
     /// Валідувати хвилини: 5939 і більше означає «немає оцінки», справжні оцінки менші
     /// </summary>
     /// <summary>
+    /// Потужність батареї (без знака) для JSON-станцій. Готове поле outputWatts беремо, лише коли воно
+    /// не нуль: у Delta Max воно завжди 0. Інакше напруга × струм (мВ × мА) по головній батареї
+    /// та додаткових, якщо вони є; null, якщо даних немає
+    /// </summary>
+    public static int? BatteryPowerW(this DeviceParams parameters, string wattsKey, params string[] packs)
+    {
+        if (parameters.GetAbsInt(wattsKey) is int watts && watts > 0)
+            return watts;
+
+        double? sum = null;
+        foreach (var pack in packs)
+        {
+            if (parameters.GetNumber($"{pack}.vol") is double mv && parameters.GetNumber($"{pack}.amp") is double ma)
+                sum = (sum ?? 0) + Math.Abs(mv * ma) / 1_000_000;
+        }
+        return sum.HasValue ? (int)Math.Round(sum.Value) : parameters.GetAbsInt(wattsKey);
+    }
+
+    /// <summary>
     /// Мережа для protobuf-станцій (Delta 3, Delta Pro 3). Прапорець plug_in_info_ac_in_flag буває 0,
     /// хоча станція заряджається від розетки (бачили на Delta Pro 3), тож фізичні ознаки мають перевагу:
     /// напруга на вході AC або потужність, що надходить з AC, означають, що мережа є
