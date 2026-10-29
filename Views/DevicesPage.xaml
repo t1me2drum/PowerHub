@@ -148,6 +148,7 @@
                       CanDragItems="True"
                       AllowDrop="True"
                       DragItemsCompleted="DevicesList_DragItemsCompleted"
+                      SizeChanged="TilesGrid_SizeChanged"
                       Padding="12,0,12,16"
                       Visibility="Collapsed">
                 <GridView.ItemContainerStyle>
@@ -176,7 +177,10 @@
                                     </MenuFlyoutItem>
                                 </MenuFlyout>
                             </Border.ContextFlyout>
-                            <views:StationTile Device="{x:Bind}"/>
+                            <!-- Плитки зменшуються, щоб усі станції вмістились на екрані (розмір комірки — у code-behind) -->
+                            <Viewbox Stretch="Uniform">
+                                <views:StationTile Device="{x:Bind}"/>
+                            </Viewbox>
                         </Border>
                     </DataTemplate>
                 </GridView.ItemTemplate>
