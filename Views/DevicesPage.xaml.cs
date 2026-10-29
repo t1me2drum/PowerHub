@@ -71,7 +71,53 @@ public sealed partial class DevicesPage : Page
         DevicesList.Visibility = Ui.VisibleIf(!empty && !dashboard);
         TilesGrid.Visibility = Ui.VisibleIf(!empty && dashboard);
         SyncButton.Visibility = Ui.VisibleIf(App.Repository.Credentials?.HasDeveloperKeys == true);
+        UpdateTileSize();
     }
+
+    #region Розмір плиток
+
+    private const double TileGap = 12;          // Відступ контейнера плитки (ItemContainerStyle)
+    private const double TileBorder = 2;        // Рамка картки
+    private const double MinTileScale = 0.6;    // Дрібніше текст уже погано читається — тоді прокрутка
+
+    private void TilesGrid_SizeChanged(object sender, SizeChangedEventArgs e) => UpdateTileSize();
+
+    /// <summary>
+    /// Підібрати найбільший масштаб (до 100%), за якого всі плитки вміщаються у вікні без прокрутки
+    /// </summary>
+    private void UpdateTileSize()
+    {
+        if (TilesGrid.ItemsPanelRoot is not ItemsWrapGrid panel)
+            return;
+
+        var width = TilesGrid.ActualWidth - TilesGrid.Padding.Left - TilesGrid.Padding.Right;
+        var height = TilesGrid.ActualHeight - TilesGrid.Padding.Top - TilesGrid.Padding.Bottom;
+        var count = Math.Max(Devices.Count, 1);
+        var tileW = StationTile.TileWidth + TileBorder;
+        var tileH = StationTile.TileHeight + TileBorder;
+
+        var scale = MinTileScale;
+        if (width > 0 && height > 0)
+        {
+            for (var s = 1.0; s >= MinTileScale; s -= 0.02)
+            {
+                var columns = (int)Math.Floor(width / (tileW * s + TileGap));
+                if (columns < 1)
+                    continue;
+                var rows = (int)Math.Ceiling(count / (double)columns);
+                if (rows * (tileH * s + TileGap) <= height)
+                {
+                    scale = s;
+                    break;
+                }
+            }
+        }
+
+        panel.ItemWidth = Math.Floor(tileW * scale + TileGap);
+        panel.ItemHeight = Math.Floor(tileH * scale + TileGap);
+    }
+
+    #endregion
 
     private void DevicesList_ItemClick(object sender, ItemClickEventArgs e)
     {
